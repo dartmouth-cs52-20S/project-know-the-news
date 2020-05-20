@@ -1,7 +1,4 @@
-# Project Name
-
-![Team Photo](Insert a Team Photo URL here)
-[*how?*](https://help.github.com/articles/about-readmes/#relative-links-and-image-paths-in-readme-files)
+# Know the News
 
 ## Screenshots 
 
@@ -10,7 +7,7 @@
 
 ## Architecture
 
-TODO:  descriptions of code organization and tools and libraries used
+TBU
 
 ## Setup
 
@@ -19,16 +16,12 @@ TODO:  descriptions of code organization and tools and libraries used
 ## Deployment
 
 * Run yarn deploy to deploy at knowthenews.surge.sh
+    * Won't work right now due to API being deployed locally
 
 ## Authors
 
-Ayan Agarwal
-Ryan Blankemeier
-Alex Feng
-Ray Li
-Fedya Myagkov
-Dylan Spector
+Ayan Agarwal, Ryan Blankemeier, Alex Feng, Ray Li, Fedya Myagkov, Dylan Spector
 
 ## Acknowledgments
-Lab 4, CS52
-Starter Pack, CS52
+* Lab 4, CS52
+* Starter Pack, CS52
