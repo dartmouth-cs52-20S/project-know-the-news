@@ -5,8 +5,8 @@
 
 ## Screenshots 
 
-[Home Page](img/screenshot-home.png)
-[Individual Article](img/screenshot-home.png)
+* [Home Page](img/screenshot-home.png)
+* [Individual Article](img/screenshot-home.png)
 
 ## Architecture
 
