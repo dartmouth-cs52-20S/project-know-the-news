@@ -22,6 +22,8 @@ TBU
 
 Ayan Agarwal, Ryan Blankemeier, Alex Feng, Ray Li, Fedya Myagkov, Dylan Spector
 
+Fedy testing pull request
+
 ## Acknowledgments
 * Lab 4, CS52
 * Starter Pack, CS52
