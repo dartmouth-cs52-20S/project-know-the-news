@@ -3,7 +3,7 @@
 ## Screenshots 
 
 * [Home Page](img/screenshot-home.png)
-* [Individual Article](img/screenshot-home.png)
+* [Individual Article](img/screenshot-article.png)
 
 ## Architecture
 
