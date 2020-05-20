@@ -1,24 +1,27 @@
-# Project Name
+# Know the News
 
-![Team Photo](Insert a Team Photo URL here)
-[*how?*](https://help.github.com/articles/about-readmes/#relative-links-and-image-paths-in-readme-files)
+## Screenshots 
 
-TODO: short project description, some sample screenshots or mockups
+* [Home Page](img/screenshot-home.png)
+* [Individual Article](img/screenshot-home.png)
 
 ## Architecture
 
-TODO:  descriptions of code organization and tools and libraries used
+TBU
 
 ## Setup
 
-TODO: how to get the project dev environment up and running, npm install etc
+* Requries running the API (https://github.com/dartmouth-cs52-20S/project-api-know-the-news) locally at port 9090
 
 ## Deployment
 
-TODO: how to deploy the project
+* Run yarn deploy to deploy at knowthenews.surge.sh
+    * Won't work right now due to API being deployed locally
 
 ## Authors
 
-TODO: list of authors
+Ayan Agarwal, Ryan Blankemeier, Alex Feng, Ray Li, Fedya Myagkov, Dylan Spector
 
 ## Acknowledgments
+* Lab 4, CS52
+* Starter Pack, CS52
