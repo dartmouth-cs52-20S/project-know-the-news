@@ -12,8 +12,20 @@ module.exports = {
   output: { publicPath: '/' },
   entry: ['./src'], // this is where our app lives
   devtool: 'source-map', // this enables debugging with source in chrome devtools
+  devServer: {
+    hot: true,
+    historyApiFallback: true,
+  },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          { loader: 'babel-loader' },
+          { loader: 'eslint-loader' },
+        ],
+      },
       {
         test: /\.(jpe?g|png|gif|svg)$/,
         use: [
@@ -24,14 +36,6 @@ module.exports = {
               name: '[name].[ext]',
             },
           },
-        ],
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: [
-          { loader: 'babel-loader' },
-          { loader: 'eslint-loader' },
         ],
       },
       {
@@ -60,10 +64,6 @@ module.exports = {
         ],
       },
     ],
-  },
-  devServer: {
-    hot: true,
-    historyApiFallback: true,
   },
   plugins: [
     new MiniCssExtractPlugin(),
