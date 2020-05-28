@@ -5,19 +5,19 @@ const initialState = {
   current: {},
 };
 
-const postsReducer = (state = initialState, action) => {
+const TopicsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionTypes.FETCH_POSTS:
+    case ActionTypes.FETCH_Topics:
       // return { all: action.payload, current: null };
       return { current: {}, all: action.payload };
-    case ActionTypes.FETCH_POST:
+    // case ActionTypes.FETCH_POST:
       // return { all: null, current: action.payload };
-      return { ...state, current: action.payload };
-    case ActionTypes.UPDATE_POST:
-      return { ...state, current: action.payload };
+      // return { ...state, current: action.payload };
+    // case ActionTypes.UPDATE_POST:
+      // return { ...state, current: action.payload };
     default:
       return state;
   }
 };
 
-export default postsReducer;
+export default TopicsReducer;

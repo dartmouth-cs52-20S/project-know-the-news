@@ -31,7 +31,7 @@ class Signup extends Component {
 
   render() {
     return (
-      <div id="credentials">
+      <div id="signInPage">
         <Typography variant="h4" id="header">Sign in</Typography>
         <input className="fields" placeholder="Username" value={this.state.username} onChange={this.handleChangeUsername} />
         <input className="fields" placeholder="Email" value={this.state.email} onChange={this.handleChangeEmail} />

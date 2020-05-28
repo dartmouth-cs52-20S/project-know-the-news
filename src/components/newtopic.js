@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
-import { createPost } from '../actions/index';
+import { createTopic } from '../actions/index';
 
-class Post extends Component {
+class NewTopic extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,7 +34,7 @@ class Post extends Component {
   }
 
   handleSave = () => {
-    this.props.createPost(this.state, this.props.history);
+    this.props.createTopic(this.state, this.props.history);
   }
 
   handleDelete = () => {
@@ -61,4 +61,4 @@ class Post extends Component {
   }
 }
 
-export default connect(null, { createPost })(Post);
+export default connect(null, { createTopic })(NewTopic);

@@ -137,12 +137,14 @@ class Post extends Component {
       <div>
         <div id="post">
           {this.renderTitle()}
-          {this.renderTags()}
-          {/* {this.renderContent()} */}
-          {this.renderCoverUrl()}
-          <Typography variant="caption" id="tags">
-            Posted by: {this.props.currentPost.authorName}
-          </Typography>
+          <div id="articleBG">
+            {this.renderTags()}
+            {/* {this.renderContent()} */}
+            {this.renderCoverUrl()}
+            <Typography variant="caption" id="tags">
+              Posted by: {this.props.currentPost.authorName}
+            </Typography>
+          </div>
           <div id="buttons">
             <IconButton aria-label="delete" onClick={this.handleDelete}>
               <DeleteIcon />
@@ -156,6 +158,7 @@ class Post extends Component {
 }
 
 function mapStateToProps(reduxState) {
+  console.log(reduxState.posts.current);
   return {
     currentPost: reduxState.posts.current,
   };

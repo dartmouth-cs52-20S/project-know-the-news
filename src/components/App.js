@@ -5,24 +5,33 @@ import {
   BrowserRouter as Router, Route, NavLink, Switch,
 } from 'react-router-dom';
 import {
-  AppBar, IconButton, Typography, Toolbar,
+  AppBar, IconButton, Toolbar,
 } from '@material-ui/core';
-import HomeIcon from '@material-ui/icons/Home';
-import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
-import Posts from './posts';
+import AddIcon from '@material-ui/icons/Add';
+import Topics from './topics';
 import Post from './post';
-import NewPost from './newpost';
+import NewTopic from './newtopic';
 import Signin from './signin';
 import Signup from './signup';
 import { signoutUser } from '../actions/index';
-import PrivateRoute from './privateRoute';
+// import PrivateRoute from './privateRoute';
 
 const renderAuth = (auth, signout, history) => {
   if (auth) {
-    return <Button color="inherit" onClick={() => signout(history)}>Sign Out</Button>;
+    return (
+      <Button color="inherit" onClick={() => signout(history)}>
+        <div className="nav">
+          Sign Out
+        </div>
+      </Button>
+    );
   } else {
-    return <NavLink className="nav" to="/signin"><Button color="inherit">Login</Button></NavLink>;
+    return (
+      <NavLink className="nav" to="/signin">
+        Sign in
+      </NavLink>
+    );
   }
 };
 
@@ -32,16 +41,15 @@ const Nav = (props) => {
       <Toolbar id="topBar">
         <div id="navLeft">
           <IconButton color="inherit" aria-label="menu">
-            <NavLink className="nav" exact to="/"><HomeIcon /></NavLink>
+            <NavLink className="logo" exact to="/" />
           </IconButton>
-          <Typography variant="h6">
-            Know the News
-          </Typography>
+          <NavLink id="navLeftItem" exact to="#">About</NavLink>
+          <NavLink id="navLeftItem" exact to="#">Discussions</NavLink>
         </div>
         <div id="navRight">
           {renderAuth(props.auth, props.signoutUser, props.history)}
           <IconButton color="inherit" aria-label="menu">
-            <NavLink className="nav" to="/posts/new"><AddIcon /></NavLink>
+            <NavLink className="nav" to="/topics/new"><AddIcon /></NavLink>
           </IconButton>
         </div>
       </Toolbar>
@@ -63,8 +71,8 @@ const App = (props) => {
       <div>
         <ConnectedNav />
         <Switch>
-          <Route exact path="/" component={Posts} />
-          <PrivateRoute path="/posts/new" component={NewPost} />
+          <Route exact path="/" component={Topics} />
+          <Route path="/topics/new" component={NewTopic} />
           <Route path="/posts/:postID" component={Post} />
           <Route path="/signin" component={Signin} />
           <Route path="/signup" component={Signup} />
@@ -74,5 +82,7 @@ const App = (props) => {
     </Router>
   );
 };
+
+// <PrivateRoute path="/topics/new" component={NewTopic} />
 
 export default App;

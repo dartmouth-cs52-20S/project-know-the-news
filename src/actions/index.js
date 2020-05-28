@@ -5,22 +5,22 @@ const ROOT_URL = 'http://localhost:9090/api';
 
 // keys for actiontypes
 export const ActionTypes = {
-  FETCH_POSTS: 'FETCH_POSTS',
-  FETCH_POST: 'FETCH_POST',
-  UPDATE_POST: 'UPDATE_POST',
-  CREATE_POST: 'CREATE_POST',
-  DELETE_POST: 'DELETE_POST',
+  FETCH_TOPICS: 'FETCH_TOPICS',
+  // FETCH_POST: 'FETCH_POST',
+  // UPDATE_POST: 'UPDATE_POST',
+  CREATE_TOPIC: 'CREATE_TOPIC',
+  // DELETE_POST: 'DELETE_POST',
   ERROR_SET: 'ERROR_SET',
   AUTH_USER: 'AUTH_USER',
   DEAUTH_USER: 'DEAUTH_USER',
   AUTH_ERROR: 'AUTH_ERROR',
 };
 
-export function fetchPosts() {
+export function fetchTopics() {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/posts`)
+    axios.get(`${ROOT_URL}/topics`)
       .then((response) => {
-        dispatch({ type: ActionTypes.FETCH_POSTS, payload: response.data });
+        dispatch({ type: ActionTypes.FETCH_TOPICS, payload: response.data });
       })
       .catch((error) => {
         dispatch({ type: ActionTypes.ERROR_SET, error });
@@ -28,9 +28,9 @@ export function fetchPosts() {
   };
 }
 
-export function createPost(post, history) {
+export function createTopic(post, history) {
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/posts`, post, { headers: { authorization: localStorage.getItem('token') } })
+    axios.post(`${ROOT_URL}/topics`, post, { headers: { authorization: localStorage.getItem('token') } })
       .then((response) => {
         history.push('/');
       })
@@ -40,7 +40,7 @@ export function createPost(post, history) {
   };
 }
 
-export function updatePost(id, post) {
+/* export function updatePost(id, post) {
   return (dispatch) => {
     axios.put(`${ROOT_URL}/posts/${id}`, post, { headers: { authorization: localStorage.getItem('token') } })
       .then((response) => {
@@ -50,9 +50,9 @@ export function updatePost(id, post) {
         dispatch({ type: ActionTypes.ERROR_SET, error });
       });
   };
-}
+} */
 
-export function fetchPost(id) {
+/* export function fetchPost(id) {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/posts/${id}`)
       .then((response) => {
@@ -62,9 +62,9 @@ export function fetchPost(id) {
         dispatch({ type: ActionTypes.ERROR_SET, error });
       });
   };
-}
+} */
 
-export function deletePost(id, history) {
+/* export function deletePost(id, history) {
   return (dispatch) => {
     axios.delete(`${ROOT_URL}/posts/${id}`, { headers: { authorization: localStorage.getItem('token') } })
       .then((response) => {
@@ -74,7 +74,7 @@ export function deletePost(id, history) {
         dispatch({ type: ActionTypes.ERROR_SET, error });
       });
   };
-}
+} */
 
 // trigger to deauth if there is error
 // can also use in your error reducer if you have one to display an error message
