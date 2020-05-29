@@ -38,30 +38,38 @@ class Signup extends Component {
     this.setState({ username: event.target.value });
   }
 
+  // function called on continue button press
   handleContinue = (event) => {
+    // make sure that passwords matched up, then change the continue bool to true
     if (this.state.password === this.state.npassword) {
       console.log('nice');
       this.setState({ continue: true });
+      // call the render function again with continue == true
       this.forceUpdate();
-      // this.props.signupUser(this.state, this.props.history);
+    // else if the passwords didnt match up, set correct states (clear password states)
     } else {
       this.setState({
         password: '',
         npassword: '',
         samePword: false,
       });
+      // and call the render function again with samePword == False
       this.forceUpdate();
     }
   }
 
+  // function that is called on slider change
   handleSliderDrag = (event, val) => {
     this.setState({ voterValue: val });
     console.log(this.state.voterValue);
   }
 
   render() {
+    // if we have not pressed the continue button yet
+    // here we have a form for email, username, and password (with a retype password check)
     if (!this.state.continue) {
       if (this.state.samePword) {
+        // originial form that renders
         return (
           <div id="signUpPage">
             <Helmet>
@@ -79,6 +87,7 @@ class Signup extends Component {
           </div>
         );
       } else {
+        // render if retyped password didn't match up the password box will render in red
         return (
           <div id="signUpPage">
             <Helmet>
@@ -106,6 +115,7 @@ class Signup extends Component {
         );
       }
     } else {
+      // this is rendered after the user has hit continue (has all our slider bar stuff as in figma)
       return (
         <div id="signUpPage">
           <Helmet>
