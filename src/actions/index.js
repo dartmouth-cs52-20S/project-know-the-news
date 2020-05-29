@@ -28,9 +28,9 @@ export function fetchTopics() {
   };
 }
 
-export function createTopic(post, history) {
+export function createTopic(articles, history) {
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/topics`, post, { headers: { authorization: localStorage.getItem('token') } })
+    axios.post(`${ROOT_URL}/topics`, articles, { headers: { authorization: localStorage.getItem('token') } })
       .then((response) => {
         history.push('/');
       })

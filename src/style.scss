@@ -189,9 +189,25 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color: #C2DDE6;;
+    justify-content: space-around;
+    
+    width:400px;
+    height:400px;
+    background-color: white;
+    border-radius: 10px; 
+
+    position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+    right: 0;
+    
+    margin: auto;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
     .fields {
-        margin: 5px;
+        margin: 10px;
         font-size: 1rem;
         font-family: "Roboto", "Helvetica", "Arial", sans-serif;
         font-weight: 400;
@@ -200,15 +216,90 @@ a {
         width: 300px;
         padding-left: 7px;
     }
-    ::placeholder {
-        text-align: left;
+
+    .link {
+        font-family: 'Righteous';
+        font-size: 15;
     }
+    
     #header {
-        margin-top: 30px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-family: 'Righteous';
+        font-size: 37px;
+    }
+
+    .button {
+        font-family: 'Righteous';
+        padding: 10px 20px 10px 20px;
+        background-color: #91E399;
         margin-bottom: 10px;
     }
-    a {
-        margin: 4px 0 20px 0;
+}
+
+#signUpPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    justify-content: space-around;
+    
+    width:400px;
+    height:450px;
+    background-color: white;
+    border-radius: 10px; 
+
+    position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+    right: 0;
+    
+    margin: auto;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    .fields {
+        margin: 10px;
+        font-size: 1rem;
+        font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+        font-weight: 400;
+        line-height: 1.5;
+        letter-spacing: 0.00938em;
+        width: 300px;
+        padding-left: 7px;
+    }
+    
+    #header {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-family: 'Righteous';
+        font-size: 37px;
+    }
+
+}
+
+#bottomSignUp{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 5px;
+    
+    .link {
+        flex-basis: 100%;
+        text-align: center;
+        padding-right: 30px;
+        font-family: 'Righteous';
+        font-size: 15;
+    }
+    
+    .button {
+        flex-basis: 100%;
+        text-align: center;
+        font-family: 'Righteous';
+        padding: 10px 10px 10px 10px;
+        background-color: #91E399;
+        margin-bottom: 10px;
     }
 }
 

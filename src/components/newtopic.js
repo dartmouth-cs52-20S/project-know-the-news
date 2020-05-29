@@ -34,7 +34,8 @@ class NewTopic extends Component {
   }
 
   handleSave = () => {
-    this.props.createTopic(this.state, this.props.history);
+    const articles = [this.state.articleTitle];
+    this.props.createTopic(articles, this.props.history);
   }
 
   handleDelete = () => {

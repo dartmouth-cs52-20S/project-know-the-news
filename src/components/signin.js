@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { Link, Typography } from '@material-ui/core';
+import { Link } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { Helmet } from 'react-helmet';
 import { signinUser } from '../actions/index';
 
 class Signup extends Component {
@@ -31,13 +33,15 @@ class Signup extends Component {
 
   render() {
     return (
-      <div id="signInPage">
-        <Typography variant="h4" id="header">Sign in</Typography>
-        <input className="fields" placeholder="Username" value={this.state.username} onChange={this.handleChangeUsername} />
-        <input className="fields" placeholder="Email" value={this.state.email} onChange={this.handleChangeEmail} />
-        <input className="fields" placeholder="Password" value={this.state.password} onChange={this.handleChangePassword} />
-        <Link component={NavLink} to="/signup">Don&apos;t have an account? Sign up here!</Link>
-        <Button variant="contained" color="default" onClick={this.handleSubmit}>Sign In</Button>
+      <div id="signInPage" className="signIn">
+        <Helmet>
+          <style>{'body { background-color: #C2DDE6; }'}</style>
+        </Helmet>
+        <h3 id="header">Varify</h3>
+        <TextField className="fields" id="outlined-basic" label="Username" value={this.state.username} onChange={this.handleChangeUsername} variant="outlined" />
+        <TextField className="fields" id="outlined-basic" type="password" label="Password" value={this.state.password} onChange={this.handleChangePassword} variant="outlined" />
+        <Link className="link" component={NavLink} to="/signup">Don&apos;t have an account? Sign up here!</Link>
+        <Button className="button" variant="contained" size="large" onClick={this.handleSubmit}>Sign In</Button>
       </div>
     );
   }
