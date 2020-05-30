@@ -11,20 +11,16 @@ class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '', password: '', username: '',
+      password: '', email: '',
     };
-  }
-
-  handleChangeEmail = (event) => {
-    this.setState({ email: event.target.value });
   }
 
   handleChangePassword = (event) => {
     this.setState({ password: event.target.value });
   }
 
-  handleChangeUsername = (event) => {
-    this.setState({ username: event.target.value });
+  handleChangeEmail = (event) => {
+    this.setState({ email: event.target.value });
   }
 
   handleSubmit = (event) => {
@@ -38,7 +34,7 @@ class Signup extends Component {
           <style>{'body { background-color: #C2DDE6; }'}</style>
         </Helmet>
         <h3 id="header">Varify</h3>
-        <TextField className="fields" id="outlined-basic" label="Username" value={this.state.username} onChange={this.handleChangeUsername} variant="outlined" />
+        <TextField className="fields" id="outlined-basic" label="Email" value={this.state.username} onChange={this.handleChangeEmail} variant="outlined" />
         <TextField className="fields" id="outlined-basic" type="password" label="Password" value={this.state.password} onChange={this.handleChangePassword} variant="outlined" />
         <Link className="link" component={NavLink} to="/signup">Don&apos;t have an account? Sign up here!</Link>
         <Button className="button" variant="contained" size="large" onClick={this.handleSubmit}>Sign In</Button>

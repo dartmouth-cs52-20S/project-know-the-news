@@ -85,28 +85,23 @@ export function authError(error) {
   };
 }
 
-export function signinUser({ email, password, username }, history) {
-  // takes in an object with email and password (minimal user object)
+export function signinUser({ password, email }, history) {
+  const user = { email, password };
   // returns a thunk method that takes dispatch as an argument (just like our create post method really)
-  // does an axios.post on the /signin endpoint
-  // on success does:
-  //  dispatch({ type: ActionTypes.AUTH_USER });
-  //  localStorage.setItem('token', response.data.token);
-  // on error should dispatch(authError(`Sign In Failed: ${error.response.data}`));
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/signin`, { email, password, username })
+    axios.post(`${ROOT_URL}/signin`, user)
       .then((response) => {
         dispatch({ type: ActionTypes.AUTH_USER });
         localStorage.setItem('token', response.data.token);
-        history.push('/');
       })
+      .then(() => { history.push('/'); })
       .catch((error) => {
         dispatch(authError(`Sign In Failed: ${error.response.data}`));
       });
   };
 }
 
-export function signupUser({ email, password, username }, history) {
+export function signupUser(email, username, password, history) {
   // takes in an object with email and password (minimal user object)
   // returns a thunk method that takes dispatch as an argument (just like our create post method really)
   // does an axios.post on the /signup endpoint (only difference from above)

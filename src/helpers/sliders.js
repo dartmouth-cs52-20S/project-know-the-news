@@ -4,7 +4,8 @@ import Slider from '@material-ui/core/Slider';
 // eslint-disable-next-line import/prefer-default-export
 export const PrettoSlider = withStyles({
   root: {
-    color: (116, 6, 153),
+    color: 'grey',
+    width: 425,
     height: 8,
   },
   thumb: {
@@ -23,23 +24,25 @@ export const PrettoSlider = withStyles({
     left: 'calc(-50% + 4px)',
   },
   track: {
-    height: 8,
-    borderRadius: 4,
+    display: 'none',
   },
   rail: {
     height: 8,
     borderRadius: 4,
   },
+  markActive: {
+    backgroundColor: 'currentColor',
+  },
 })(Slider);
 
-export const marks = [
+export const VoterMarks = [
   {
     value: 0,
-    label: 'Always Dem',
+    label: 'Democrat',
   },
   {
     value: 25,
-    label: 'Mod Dem',
+    label: '',
   },
   {
     value: 50,
@@ -47,10 +50,56 @@ export const marks = [
   },
   {
     value: 75,
-    label: 'Mod Rep',
+    label: '',
   },
   {
     value: 100,
-    label: 'Always Rep',
+    label: 'Republican',
+  },
+];
+
+export const MediaMarks = [
+  {
+    value: 0,
+    label: 'All a Lie',
+  },
+  {
+    value: 25,
+    label: '',
+  },
+  {
+    value: 50,
+    label: '50/50',
+  },
+  {
+    value: 75,
+    label: '',
+  },
+  {
+    value: 100,
+    label: 'All Honest',
+  },
+];
+
+export const DividedMarks = [
+  {
+    value: 0,
+    label: 'Civil War',
+  },
+  {
+    value: 25,
+    label: '',
+  },
+  {
+    value: 50,
+    label: '50/50',
+  },
+  {
+    value: 75,
+    label: '',
+  },
+  {
+    value: 100,
+    label: 'No Division',
   },
 ];

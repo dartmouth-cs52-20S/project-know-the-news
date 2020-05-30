@@ -58,6 +58,7 @@ const Nav = (props) => {
 };
 
 function mapStateToProps(reduxState) {
+  console.log(reduxState);
   return {
     auth: reduxState.auth.authenticated,
   };
