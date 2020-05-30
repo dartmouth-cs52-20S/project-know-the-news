@@ -11,13 +11,14 @@ class NewTopic extends Component {
     super(props);
     this.state = {
       articleTitle: '',
-      // content: '',
+      articles: [],
       articleLink: '',
       keywords: '',
     };
   }
 
   handleChangeTitle = (event) => {
+    console.log(this.state.articleTitle);
     this.setState({ articleTitle: event.target.value });
   }
 
@@ -34,8 +35,7 @@ class NewTopic extends Component {
   }
 
   handleSave = () => {
-    const articles = [this.state.articleTitle];
-    this.props.createTopic(articles, this.props.history);
+    this.props.createTopic(this.state.articles, this.props.history);
   }
 
   handleDelete = () => {

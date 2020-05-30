@@ -12,11 +12,12 @@ class Topics extends Component {
 
   topicsList = () => {
     const topics = this.props.topics.map((topic) => {
+      console.log(topic.links[0]);
       return (
         <li key={topic.id} className="postItem">
           <NavLink to={`posts/${topic.id}`} exact id="link">
             <Typography id="postTitle" variant="h4" component="h2">
-              {topic.articleTitle}
+              {topic.links[0]}
             </Typography>
             <Typography id="postTag" variant="subtitle1" component="h2" gutterBottom>
               {topic.keywords}
@@ -53,7 +54,7 @@ class Topics extends Component {
 function mapStateToProps(reduxState) {
   console.log(reduxState);
   return {
-    topics: reduxState.posts.all,
+    topics: reduxState.topics.all,
   };
 }
 

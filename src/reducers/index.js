@@ -6,7 +6,7 @@ import TopicsReducer from './topicsReducer';
 import AuthReducer from './auth-Reducer';
 
 const rootReducer = combineReducers({
-  posts: TopicsReducer,
+  topics: TopicsReducer,
   auth: AuthReducer,
 });
 export default rootReducer;
