@@ -185,27 +185,29 @@ class Signup extends Component {
 
   renderPasswordNotMatch() {
     return (
-      <div id="signUpPage">
-        <Helmet>
-          <style>{'body { background-color: #C2DDE6; }'}</style>
-        </Helmet>
-        <h3 id="header">Varify</h3>
-        <TextField className="fields" id="outlined-basic" label="Email" value={this.state.email} onChange={this.handleChangeEmail} variant="outlined" />
-        <TextField className="fields" id="outlined-basic" label="Username" value={this.state.username} onChange={this.handleChangeUsername} variant="outlined" />
-        <TextField className="fields" id="outlined-basic" type="password" label="Password" value={this.state.password} onChange={this.handleChangePassword} variant="outlined" />
-        <TextField error
-          className="fields"
-          id="outlined-basic"
-          type="password"
-          label="Re-Type Password"
-          value={this.state.npassword}
-          onChange={this.handleChangeCheckPassword}
-          variant="outlined"
-          helperText="Incorrect Re-Type Password."
-        />
-        <div id="bottomSignUp">
-          <Link className="link" component={NavLink} to="/signin">Already have an account?</Link>
-          <Button className="button" variant="contained" size="large" onClick={this.handleContinue}>Continue</Button>
+      <div id="parent-signUpPage">
+        <div id="signUpPage">
+          <Helmet>
+            <style>{'body { background-color: #C2DDE6; }'}</style>
+          </Helmet>
+          <h3 id="header">Varify</h3>
+          <TextField className="fields" id="outlined-basic" label="Email" value={this.state.email} onChange={this.handleChangeEmail} variant="outlined" />
+          <TextField className="fields" id="outlined-basic" label="Username" value={this.state.username} onChange={this.handleChangeUsername} variant="outlined" />
+          <TextField className="fields" id="outlined-basic" type="password" label="Password" value={this.state.password} onChange={this.handleChangePassword} variant="outlined" />
+          <TextField error
+            className="fields"
+            id="outlined-basic"
+            type="password"
+            label="Re-Type Password"
+            value={this.state.npassword}
+            onChange={this.handleChangeCheckPassword}
+            variant="outlined"
+            helperText="Incorrect Re-Type Password."
+          />
+          <div id="bottomSignUp">
+            <Link className="link" component={NavLink} to="/signin">Already have an account?</Link>
+            <Button className="button" variant="contained" size="large" onClick={this.handleContinue}>Continue</Button>
+          </div>
         </div>
       </div>
     );
