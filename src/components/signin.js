@@ -15,6 +15,10 @@ class Signup extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.auth.error = '';
+  }
+
   handleChangePassword = (event) => {
     this.setState({ password: event.target.value });
   }
@@ -24,10 +28,12 @@ class Signup extends Component {
   }
 
   handleSubmit = (event) => {
+    console.log(this.props);
     this.props.signinUser(this.state, this.props.history);
+    // this.forceUpdate();
   }
 
-  render() {
+  renderSignIn() {
     return (
       <div id="signInPage" className="signIn">
         <Helmet>
@@ -41,6 +47,63 @@ class Signup extends Component {
       </div>
     );
   }
+
+  renderSignInError() {
+    return (
+      <div id="signInPage" className="signIn">
+        <Helmet>
+          <style>{'body { background-color: #C2DDE6; }'}</style>
+        </Helmet>
+        <h3 id="header">Varify</h3>
+        <TextField
+          error
+          className="fields"
+          id="outlined-basic"
+          label="Email"
+          value={this.state.username}
+          onChange={this.handleChangeEmail}
+          variant="outlined"
+          helperText={this.props.auth.error}
+        />
+        <TextField
+          error
+          className="fields"
+          id="outlined-basic"
+          type="password"
+          label="Password"
+          value={this.state.password}
+          onChange={this.handleChangePassword}
+          variant="outlined"
+          helperText={this.props.auth.error}
+        />
+        <Link className="link" component={NavLink} to="/signup">Don&apos;t have an account? Sign up here!</Link>
+        <Button className="button" variant="contained" size="large" onClick={this.handleSubmit}>Sign In</Button>
+      </div>
+    );
+  }
+
+  render() {
+    console.log(this.props.auth.error);
+    if (this.props.auth.error === '' || !this.props.auth.error) {
+      return (
+        <div>
+          {this.renderSignIn()}
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          {this.renderSignInError()}
+        </div>
+      );
+    }
+  }
 }
 
-export default connect(null, { signinUser })(Signup);
+function mapStateToProps(reduxState) {
+  return {
+    auth: reduxState.auth,
+  };
+}
+
+export default connect(mapStateToProps, { signinUser })(Signup);

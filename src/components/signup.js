@@ -28,6 +28,10 @@ class Signup extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.auth.error = '';
+  }
+
   handleChangeEmail = (event) => {
     this.setState({ email: event.target.value });
   }
@@ -85,6 +89,224 @@ class Signup extends Component {
     console.log(this.state.divideValue);
   }
 
+  renderFirstForm() {
+    return (
+      <div id="parent-signUpPage">
+        <div id="signUpPage">
+          <Helmet>
+            <style>{'body { background-color: #C2DDE6; }'}</style>
+          </Helmet>
+          <h3 id="header">Varify</h3>
+          <TextField className="fields" id="outlined-basic" label="Email" value={this.state.email} onChange={this.handleChangeEmail} variant="outlined" />
+          <TextField className="fields" id="outlined-basic" label="Username" value={this.state.username} onChange={this.handleChangeUsername} variant="outlined" />
+          <TextField className="fields" id="outlined-basic" type="password" label="Password" value={this.state.password} onChange={this.handleChangePassword} variant="outlined" />
+          <TextField className="fields" id="outlined-basic" type="password" label="Re-Type Password" value={this.state.npassword} onChange={this.handleChangeCheckPassword} variant="outlined" />
+          <div id="bottomSignUp">
+            <Link className="link" component={NavLink} to="/signin">Already have an account?</Link>
+            <Button className="button" variant="contained" size="large" onClick={this.handleContinue}>Continue</Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  renderFirstFormWithSecondFormBelow() {
+    return (
+      <div id="parent-signUpPage">
+        <div id="signUpPage">
+          <Helmet>
+            <style>{'body { background-color: #C2DDE6; }'}</style>
+          </Helmet>
+          <h3 id="header">Varify</h3>
+          <TextField className="fields" id="outlined-basic" label="Email" value={this.state.email} onChange={this.handleChangeEmail} variant="outlined" />
+          <TextField className="fields" id="outlined-basic" label="Username" value={this.state.username} onChange={this.handleChangeUsername} variant="outlined" />
+          <TextField className="fields" id="outlined-basic" type="password" label="Password" value={this.state.password} onChange={this.handleChangePassword} variant="outlined" />
+          <TextField className="fields" id="outlined-basic" type="password" label="Re-Type Password" value={this.state.npassword} onChange={this.handleChangeCheckPassword} variant="outlined" />
+        </div>
+      </div>
+    );
+  }
+
+  renderSecondForm() {
+    return (
+      <div id="parent-signUpPage-cont">
+        <div id="signUpPage-cont">
+          <Helmet>
+            <style>{'body { background-color: #C2DDE6; }'}</style>
+          </Helmet>
+          <div className="head-text">
+            <h4>Tell us a few more things about yourself for a better user experience.</h4>
+            <h6>(Not comfortable answering? Just press Sign Up!)</h6>
+          </div>
+          <div className="sliders">
+            <a id="voter-patterns" href="https://www.politicalcompass.org/test" target="_blank">Your Usual Voting Patterns</a>
+            <PrettoSlider
+              valueLabelDisplay="off"
+              defaultValue={50}
+              onChangeCommitted={this.handleVoterSliderDrag}
+              track={false}
+              step={25}
+              marks={VoterMarks}
+              aria-labelledby="voter-patterns"
+            />
+            <Typography id="media-trust" gutterBottom>
+              Describe honesty of the media
+            </Typography>
+            <PrettoSlider
+              valueLabelDisplay="off"
+              defaultValue={50}
+              onChangeCommitted={this.handleMediaSliderDrag}
+              track={false}
+              step={25}
+              marks={MediaMarks}
+              aria-labelledby="media-trust"
+            />
+            <Typography id="divide-label">
+              Division of among Americans
+            </Typography>
+            <PrettoSlider
+              valueLabelDisplay="off"
+              defaultValue={50}
+              onChangeCommitted={this.handleDivideSliderDrag}
+              track={false}
+              step={25}
+              marks={DividedMarks}
+              aria-labelledby="divide-label"
+            />
+          </div>
+          <div id="bottomSignUp">
+            <Link className="link" component={NavLink} to="/signin">Already have an account?</Link>
+            <Button className="button" variant="contained" size="large" onClick={this.handleSubmit}>Sign Up!</Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  renderPasswordNotMatch() {
+    return (
+      <div id="signUpPage">
+        <Helmet>
+          <style>{'body { background-color: #C2DDE6; }'}</style>
+        </Helmet>
+        <h3 id="header">Varify</h3>
+        <TextField className="fields" id="outlined-basic" label="Email" value={this.state.email} onChange={this.handleChangeEmail} variant="outlined" />
+        <TextField className="fields" id="outlined-basic" label="Username" value={this.state.username} onChange={this.handleChangeUsername} variant="outlined" />
+        <TextField className="fields" id="outlined-basic" type="password" label="Password" value={this.state.password} onChange={this.handleChangePassword} variant="outlined" />
+        <TextField error
+          className="fields"
+          id="outlined-basic"
+          type="password"
+          label="Re-Type Password"
+          value={this.state.npassword}
+          onChange={this.handleChangeCheckPassword}
+          variant="outlined"
+          helperText="Incorrect Re-Type Password."
+        />
+        <div id="bottomSignUp">
+          <Link className="link" component={NavLink} to="/signin">Already have an account?</Link>
+          <Button className="button" variant="contained" size="large" onClick={this.handleContinue}>Continue</Button>
+        </div>
+      </div>
+    );
+  }
+
+  renderFirstFormDBError() {
+    // this.setState({ password: '', npassword: '' });
+    return (
+      <div id="parent-signUpPage">
+        <div id="signUpPage">
+          <Helmet>
+            <style>{'body { background-color: #C2DDE6; }'}</style>
+          </Helmet>
+          <h3 id="header">Varify</h3>
+          <TextField
+            error
+            className="fields"
+            id="outlined-basic"
+            label="Email"
+            value={this.state.email}
+            onChange={this.handleChangeEmail}
+            variant="outlined"
+            helperText={this.props.auth.error}
+          />
+          <TextField
+            error
+            className="fields"
+            id="outlined-basic"
+            label="Username"
+            value={this.state.username}
+            onChange={this.handleChangeUsername}
+            variant="outlined"
+            helperText={this.props.auth.error}
+          />
+          <TextField className="fields" id="outlined-basic" type="password" label="Password" value={this.state.password} onChange={this.handleChangePassword} variant="outlined" />
+          <TextField className="fields" id="outlined-basic" type="password" label="Re-Type Password" value={this.state.npassword} onChange={this.handleChangeCheckPassword} variant="outlined" />
+        </div>
+      </div>
+    );
+  }
+
+  renderSecondFormDBError() {
+    return (
+      <div id="parent-signUpPage-cont">
+        <div id="signUpPage-cont">
+          <Helmet>
+            <style>{'body { background-color: #C2DDE6; }'}</style>
+          </Helmet>
+          <div className="head-text">
+            <h4>Tell us a few more things about yourself for a better user experience.</h4>
+            <h6>(Not comfortable answering? Just press Sign Up!)</h6>
+          </div>
+          <div className="sliders">
+            <a id="voter-patterns" href="https://www.politicalcompass.org/test" target="_blank">Your Usual Voting Patterns</a>
+            <PrettoSlider
+              valueLabelDisplay="off"
+              defaultValue={50}
+              onChangeCommitted={this.handleVoterSliderDrag}
+              track={false}
+              step={25}
+              marks={VoterMarks}
+              aria-labelledby="voter-patterns"
+            />
+            <Typography id="media-trust" gutterBottom>
+              Describe honesty of the media
+            </Typography>
+            <PrettoSlider
+              valueLabelDisplay="off"
+              defaultValue={50}
+              onChangeCommitted={this.handleMediaSliderDrag}
+              track={false}
+              step={25}
+              marks={MediaMarks}
+              aria-labelledby="media-trust"
+            />
+            <Typography id="divide-label">
+              Division of among Americans
+            </Typography>
+            <PrettoSlider
+              valueLabelDisplay="off"
+              defaultValue={50}
+              onChangeCommitted={this.handleDivideSliderDrag}
+              track={false}
+              step={25}
+              marks={DividedMarks}
+              aria-labelledby="divide-label"
+            />
+          </div>
+          <div id="bottomSignUp">
+            <Link className="link" component={NavLink} to="/signin">Already have an account?</Link>
+            <Button className="button" variant="contained" size="large" onClick={this.handleSubmit}>Sign Up!</Button>
+          </div>
+          <div className="error">
+            {this.props.auth.error}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+
   render() {
     // if we have not pressed the continue button yet
     // here we have a form for email, username, and password (with a retype password check)
@@ -92,116 +314,44 @@ class Signup extends Component {
       if (this.state.samePword) {
         // originial form that renders
         return (
-          <div id="signUpPage">
-            <Helmet>
-              <style>{'body { background-color: #C2DDE6; }'}</style>
-            </Helmet>
-            <h3 id="header">Varify</h3>
-            <TextField className="fields" id="outlined-basic" label="Email" value={this.state.email} onChange={this.handleChangeEmail} variant="outlined" />
-            <TextField className="fields" id="outlined-basic" label="Username" value={this.state.username} onChange={this.handleChangeUsername} variant="outlined" />
-            <TextField className="fields" id="outlined-basic" type="password" label="Password" value={this.state.password} onChange={this.handleChangePassword} variant="outlined" />
-            <TextField className="fields" id="outlined-basic" type="password" label="Re-Type Password" value={this.state.npassword} onChange={this.handleChangeCheckPassword} variant="outlined" />
-            <div id="bottomSignUp">
-              <Link className="link" component={NavLink} to="/signin">Already have an account?</Link>
-              <Button className="button" variant="contained" size="large" onClick={this.handleContinue}>Continue</Button>
-            </div>
+          <div>
+            {this.renderFirstForm()}
           </div>
         );
       } else {
         // render if retyped password didn't match up the password box will render in red
         return (
-          <div id="signUpPage">
-            <Helmet>
-              <style>{'body { background-color: #C2DDE6; }'}</style>
-            </Helmet>
-            <h3 id="header">Varify</h3>
-            <TextField className="fields" id="outlined-basic" label="Email" value={this.state.email} onChange={this.handleChangeEmail} variant="outlined" />
-            <TextField className="fields" id="outlined-basic" label="Username" value={this.state.username} onChange={this.handleChangeUsername} variant="outlined" />
-            <TextField className="fields" id="outlined-basic" type="password" label="Password" value={this.state.password} onChange={this.handleChangePassword} variant="outlined" />
-            <TextField error
-              className="fields"
-              id="outlined-basic"
-              type="password"
-              label="Re-Type Password"
-              value={this.state.npassword}
-              onChange={this.handleChangeCheckPassword}
-              variant="outlined"
-              helperText="Incorrect Re-Type Password."
-            />
-            <div id="bottomSignUp">
-              <Link className="link" component={NavLink} to="/signin">Already have an account?</Link>
-              <Button className="button" variant="contained" size="large" onClick={this.handleContinue}>Continue</Button>
-            </div>
+          <div>
+            {this.renderPasswordNotMatch()}
           </div>
         );
       }
     } else {
       // this is rendered after the user has hit continue (has all our slider bar stuff as in figma)
-      return (
-        <div id="parent-signUpPage-cont">
-          <div id="signUpPage-cont">
-            <Helmet>
-              <style>{'body { background-color: #C2DDE6; }'}</style>
-            </Helmet>
-            <h3 id="header">Varify</h3>
-            <div className="head-text">
-              <h4>Tell us a few more things about yourself for a better user experience.</h4>
-              <h6>(Not comfortable answering? Just press Sign Up!)</h6>
-            </div>
-            <div className="sliders">
-              <a id="voter-patterns" href="https://www.politicalcompass.org/test" target="_blank">Your Usual Voting Patterns</a>
-              <PrettoSlider
-                valueLabelDisplay="off"
-                defaultValue={50}
-                onChangeCommitted={this.handleVoterSliderDrag}
-                track={false}
-                step={25}
-                marks={VoterMarks}
-                aria-labelledby="voter-patterns"
-              />
-              <Typography id="media-trust" gutterBottom>
-                Describe honesty of the media
-              </Typography>
-              <PrettoSlider
-                valueLabelDisplay="off"
-                defaultValue={50}
-                onChangeCommitted={this.handleMediaSliderDrag}
-                track={false}
-                step={25}
-                marks={MediaMarks}
-                aria-labelledby="media-trust"
-              />
-              <Typography id="divide-label">
-                Division of among Americans
-              </Typography>
-              <PrettoSlider
-                valueLabelDisplay="off"
-                defaultValue={50}
-                onChangeCommitted={this.handleDivideSliderDrag}
-                track={false}
-                step={25}
-                marks={DividedMarks}
-                aria-labelledby="divide-label"
-              />
-            </div>
-            <div id="bottomSignUp">
-              <Link className="link" component={NavLink} to="/signin">Already have an account?</Link>
-              <Button className="button" variant="contained" size="large" onClick={this.handleSubmit}>Sign Up!</Button>
-            </div>
+      // eslint-disable-next-line no-lonely-if
+      if (this.props.auth.error === '' || !this.props.auth.error) {
+        return (
+          <div>
+            {this.renderFirstFormWithSecondFormBelow()}
+            {this.renderSecondForm()}
           </div>
-        </div>
-      );
+        );
+      } else {
+        return (
+          <div>
+            {this.renderFirstFormDBError()}
+            {this.renderSecondFormDBError()}
+          </div>
+        );
+      }
     }
   }
 }
 
-export default connect(null, { signupUser })(Signup);
+function mapStateToProps(reduxState) {
+  return {
+    auth: reduxState.auth,
+  };
+}
 
-/* <div id="credentials">
-        <Typography variant="h4" id="header">Sign up</Typography>
-        <input className="fields" placeholder="Username" value={this.state.username} onChange={this.handleChangeUsername} />
-        <input className="fields" placeholder="Email" value={this.state.email} onChange={this.handleChangeEmail} />
-        <input className="fields" placeholder="Password" value={this.state.password} onChange={this.handleChangePassword} />
-        <Link component={NavLink} to="/signin">Already have an account? Sign in here!</Link>
-        <Button variant="contained" color="default" onClick={this.handleSubmit}>Sign Up</Button>
-      </div> */
+export default connect(mapStateToProps, { signupUser })(Signup);
