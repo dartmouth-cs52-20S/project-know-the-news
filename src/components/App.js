@@ -13,7 +13,7 @@ import Topics from './topics';
 import Topic from './topic';
 import AllTopics from './alltopics';
 import AboutPage from './about';
-import NewTopic from './newtopic';
+// import NewTopic from './newtopic';
 import Signin from './signin';
 import Signup from './signup';
 import Bills from './bills';
