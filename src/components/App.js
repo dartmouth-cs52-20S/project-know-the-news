@@ -53,7 +53,7 @@ const Nav = (props) => {
         <div id="navRight">
           {renderAuth(props.auth, props.signoutUser, props.history)}
           <IconButton color="inherit" aria-label="menu">
-            <NavLink className="nav" to="/topics/new"><AddIcon /></NavLink>
+            <NavLink className="nav" to="#"><AddIcon /></NavLink>
           </IconButton>
         </div>
       </Toolbar>
@@ -77,7 +77,6 @@ const App = (props) => {
         <ConnectedNav />
         <Switch>
           <Route exact path="/" component={Topics} />
-          <Route path="/topics/new" component={NewTopic} />
           <Route path="/topics/:topicID" component={Topic} />
           <Route path="/topics" component={AllTopics} />
           <Route path="/about" component={AboutPage} />
@@ -91,6 +90,7 @@ const App = (props) => {
   );
 };
 
+// <Route path="/topics/new" component={NewTopic} />
 // <Route path="/topics" component={AllTopics} />
 // <PrivateRoute path="/topics/new" component={NewTopic} />
 
