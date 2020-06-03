@@ -9,9 +9,8 @@ const TopicsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.FETCH_TOPICS:
       return { all: action.payload, current: null };
-    // case ActionTypes.FETCH_POST:
-      // return { all: null, current: action.payload };
-      // return { ...state, current: action.payload };
+    case ActionTypes.FETCH_TOPIC:
+      return { ...state, current: action.payload };
     // case ActionTypes.UPDATE_POST:
       // return { ...state, current: action.payload };
     default:

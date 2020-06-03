@@ -10,10 +10,13 @@ import {
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Topics from './topics';
-import Post from './post';
+import Topic from './topic';
+import AllTopics from './alltopics';
+import AboutPage from './about';
 import NewTopic from './newtopic';
 import Signin from './signin';
 import Signup from './signup';
+import Bills from './bills';
 import { signoutUser } from '../actions/index';
 // import PrivateRoute from './privateRoute';
 
@@ -43,8 +46,9 @@ const Nav = (props) => {
           <IconButton color="inherit" aria-label="menu">
             <NavLink className="logo" exact to="/" />
           </IconButton>
-          <NavLink id="navLeftItem" exact to="#">About</NavLink>
-          <NavLink id="navLeftItem" exact to="#">Discussions</NavLink>
+          <NavLink id="navLeftItem" exact to="/about">About</NavLink>
+          <NavLink id="navLeftItem" exact to="/topics">Topics</NavLink>
+          <NavLink id="navLeftItem" exact to="/bills">Congress</NavLink>
         </div>
         <div id="navRight">
           {renderAuth(props.auth, props.signoutUser, props.history)}
@@ -74,7 +78,10 @@ const App = (props) => {
         <Switch>
           <Route exact path="/" component={Topics} />
           <Route path="/topics/new" component={NewTopic} />
-          <Route path="/posts/:postID" component={Post} />
+          <Route path="/topics/:topicID" component={Topic} />
+          <Route path="/topics" component={AllTopics} />
+          <Route path="/about" component={AboutPage} />
+          <Route path="/bills" component={Bills} />
           <Route path="/signin" component={Signin} />
           <Route path="/signup" component={Signup} />
           <Route render={() => (<div> News not found </div>)} />
@@ -84,6 +91,7 @@ const App = (props) => {
   );
 };
 
+// <Route path="/topics" component={AllTopics} />
 // <PrivateRoute path="/topics/new" component={NewTopic} />
 
 export default App;

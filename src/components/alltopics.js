@@ -1,12 +1,11 @@
-/* eslint-disable react/jsx-no-target-blank */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import { fetchTopics, fetchTrendingNews } from '../actions/index';
+import { fetchTopics } from '../actions/index';
 
-class Topics extends Component {
+class AllTopics extends Component {
 /*   constructor(props) {
     super(props);
 
@@ -19,7 +18,6 @@ class Topics extends Component {
 
   componentDidMount() {
     this.props.fetchTopics();
-    this.props.fetchTrendingNews();
   }
 
   topicsList = () => {
@@ -60,78 +58,34 @@ class Topics extends Component {
     } */
   }
 
-  newsList = () => {
-    const news = this.props.news.articles.map((article) => {
-      const imgStyle = {
-        backgroundImage: `url(${article.urlToImage})`,
-        backgroundSize: 'cover',
-      };
-      return (
-        <li key={article.id} style={imgStyle} className="news-item">
-          <image />
-          <a id="news-link" href={article.url} target="_blank">
-            {article.title}
-          </a>
-        </li>
-      );
-    });
-    return news;
-  }
-
   render() {
-    console.log(this.props);
-    if (!this.props.news) {
-      return (
-        <div>
-          Loading
+    return (
+      <div id="topics-parent">
+        <div id="projName">
+          Varify
         </div>
-      );
-    } else if (!this.props.news.articles) {
-      return (
-        <div>
-          Loading
-        </div>
-      );
-    } else {
-      return (
-        <div id="topics-parent">
-          <div id="projName">
-            Varify
-          </div>
-          <div id="inner-page">
-            <div id="postsBG">
-              <div id="postsBGHead">
-                <div id="recent-topics">
-                  Recent Topics
-                </div>
-                <NavLink id="see-all-btn" className="nav" to="/topics">View All</NavLink>
-                <TextField id="outlined-search" label="Search Topics" type="search" variant="outlined" />
-              </div>
-              <ul id="posts">
-                {/* {this.filteredTopics} */}
-                {this.topicsList()}
-              </ul>
+        <div id="postsBG">
+          <div id="postsBGHead">
+            <div id="recent-topics">
+              All Topics
             </div>
-            <div id="news-feed-parent">
-              <div id="news">
-                <ul>
-                  {this.newsList()}
-                </ul>
-              </div>
-            </div>
+            <TextField id="outlined-search" label="Search Topics" type="search" variant="outlined" />
           </div>
+          <ul id="posts">
+            {/* {this.filteredTopics} */}
+            {this.topicsList()}
+          </ul>
         </div>
-      );
-    }
+      </div>
+    );
   }
 }
 
 function mapStateToProps(reduxState) {
-  // console.log(reduxState);
+  console.log(reduxState);
   return {
     topics: reduxState.topics.all,
-    news: reduxState.news.all,
   };
 }
 
-export default connect(mapStateToProps, { fetchTopics, fetchTrendingNews })(Topics);
+export default connect(mapStateToProps, { fetchTopics })(AllTopics);
