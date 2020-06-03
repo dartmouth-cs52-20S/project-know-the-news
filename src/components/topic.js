@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -19,16 +20,15 @@ class Topic extends Component {
   }
 
   componentDidMount() {
-    console.log('hellooooo');
     this.props.fetchTopic(this.props.match.params.topicID);
   }
 
   linksList() {
-    const links = this.props.currentTopic.links.map((link) => {
+    const links = this.props.currentTopic.articles.map((article) => {
       return (
         <li id="link-item-parent">
-          <a href={link} id="link-item">Article Title</a>
-          <p id="article-description"> description to article</p>
+          <a href={article.link} id="link-item" target="_blank">{article.title}</a>
+          <p id="article-description">{article.link}</p>
         </li>
       );
     });
@@ -36,10 +36,10 @@ class Topic extends Component {
   }
 
   linksListSourceMap() {
-    const links = this.props.currentTopic.links.map((link) => {
+    const links = this.props.currentTopic.articles.map((article) => {
       return (
         <div id="source-box">
-          <a href={link} id="source-item">Article title</a>
+          <a href={article.link} id="source-item" target="_blank">{article.title}</a>
         </div>
       );
     });

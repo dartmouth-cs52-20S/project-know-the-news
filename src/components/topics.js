@@ -26,7 +26,6 @@ class Topics extends Component {
     // if (document.getElementById('outlined-search') === '') {
     // this.filteredTopics = this.props.topics.map((topic) => {
     const topics = this.props.topics.map((topic) => {
-      console.log(topic.links[0]);
       return (
         <li key={topic.id} className="postItem">
           <NavLink to={`topics/${topic.id}`} exact id="link">
@@ -68,9 +67,8 @@ class Topics extends Component {
       };
       return (
         <li key={article.id} style={imgStyle} className="news-item">
-          <image />
           <a id="news-link" href={article.url} target="_blank">
-            {article.title}
+            CLICK TO VIEW ARTICLE
           </a>
         </li>
       );
@@ -102,7 +100,7 @@ class Topics extends Component {
             <div id="postsBG">
               <div id="postsBGHead">
                 <div id="recent-topics">
-                  Recent Topics
+                  Saved Topics
                 </div>
                 <NavLink id="see-all-btn" className="nav" to="/topics">View All</NavLink>
                 <TextField id="outlined-search" label="Search Topics" type="search" variant="outlined" />
@@ -113,6 +111,9 @@ class Topics extends Component {
               </ul>
             </div>
             <div id="news-feed-parent">
+              <div id="trending-news">
+                Trending News
+              </div>
               <div id="news">
                 <ul>
                   {this.newsList()}
