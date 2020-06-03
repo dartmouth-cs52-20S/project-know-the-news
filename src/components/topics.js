@@ -62,12 +62,12 @@ class Topics extends Component {
   newsList = () => {
     const news = this.props.news.articles.map((article) => {
       const imgStyle = {
-        backgroundImage: `url(${article.urlToImage})`,
+        backgroundImage: `url(${article.primary_image_link})`,
         backgroundSize: 'cover',
       };
       return (
         <li key={article.id} style={imgStyle} className="news-item">
-          <a id="news-link" href={article.url} target="_blank">
+          <a id="news-link" href={article.link} target="_blank">
             CLICK TO VIEW ARTICLE
           </a>
         </li>
