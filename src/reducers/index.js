@@ -2,11 +2,15 @@
 // this defines what your store state will look like
 import { combineReducers } from 'redux';
 
-import PostsReducer from './postsReducer';
+import TopicsReducer from './topicsReducer';
 import AuthReducer from './auth-Reducer';
+import NewsReducer from './newsReducer';
+import CongressReducer from './congressReducer';
 
 const rootReducer = combineReducers({
-  posts: PostsReducer,
+  topics: TopicsReducer,
   auth: AuthReducer,
+  news: NewsReducer,
+  bills: CongressReducer,
 });
 export default rootReducer;

@@ -1,46 +1,109 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { Link, Typography } from '@material-ui/core';
+import { Link } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { Helmet } from 'react-helmet';
 import { signinUser } from '../actions/index';
 
 class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '', password: '', username: '',
+      password: '', email: '',
     };
   }
 
-  handleChangeEmail = (event) => {
-    this.setState({ email: event.target.value });
+  componentDidMount() {
+    this.props.auth.error = '';
   }
 
   handleChangePassword = (event) => {
     this.setState({ password: event.target.value });
   }
 
-  handleChangeUsername = (event) => {
-    this.setState({ username: event.target.value });
+  handleChangeEmail = (event) => {
+    this.setState({ email: event.target.value });
   }
 
   handleSubmit = (event) => {
+    console.log(this.props);
     this.props.signinUser(this.state, this.props.history);
+    // this.forceUpdate();
   }
 
-  render() {
+  renderSignIn() {
     return (
-      <div id="credentials">
-        <Typography variant="h4" id="header">Sign in</Typography>
-        <input className="fields" placeholder="Username" value={this.state.username} onChange={this.handleChangeUsername} />
-        <input className="fields" placeholder="Email" value={this.state.email} onChange={this.handleChangeEmail} />
-        <input className="fields" placeholder="Password" value={this.state.password} onChange={this.handleChangePassword} />
-        <Link component={NavLink} to="/signup">Don&apos;t have an account? Sign up here!</Link>
-        <Button variant="contained" color="default" onClick={this.handleSubmit}>Sign In</Button>
+      <div id="signInPage" className="signIn">
+        <Helmet>
+          <style>{'body { background-color: #C2DDE6; }'}</style>
+        </Helmet>
+        <h3 id="header">Varify</h3>
+        <TextField className="fields" id="outlined-basic" label="Email" value={this.state.username} onChange={this.handleChangeEmail} variant="outlined" />
+        <TextField className="fields" id="outlined-basic" type="password" label="Password" value={this.state.password} onChange={this.handleChangePassword} variant="outlined" />
+        <Link className="link" component={NavLink} to="/signup">Don&apos;t have an account? Sign up here!</Link>
+        <Button className="button" variant="contained" size="large" onClick={this.handleSubmit}>Sign In</Button>
       </div>
     );
   }
+
+  renderSignInError() {
+    return (
+      <div id="signInPage" className="signIn">
+        <Helmet>
+          <style>{'body { background-color: #C2DDE6; }'}</style>
+        </Helmet>
+        <h3 id="header">Varify</h3>
+        <TextField
+          error
+          className="fields"
+          id="outlined-basic"
+          label="Email"
+          value={this.state.username}
+          onChange={this.handleChangeEmail}
+          variant="outlined"
+          helperText={this.props.auth.error}
+        />
+        <TextField
+          error
+          className="fields"
+          id="outlined-basic"
+          type="password"
+          label="Password"
+          value={this.state.password}
+          onChange={this.handleChangePassword}
+          variant="outlined"
+          helperText={this.props.auth.error}
+        />
+        <Link className="link" component={NavLink} to="/signup">Don&apos;t have an account? Sign up here!</Link>
+        <Button className="button" variant="contained" size="large" onClick={this.handleSubmit}>Sign In</Button>
+      </div>
+    );
+  }
+
+  render() {
+    console.log(this.props.auth.error);
+    if (this.props.auth.error === '' || !this.props.auth.error) {
+      return (
+        <div>
+          {this.renderSignIn()}
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          {this.renderSignInError()}
+        </div>
+      );
+    }
+  }
 }
 
-export default connect(null, { signinUser })(Signup);
+function mapStateToProps(reduxState) {
+  return {
+    auth: reduxState.auth,
+  };
+}
+
+export default connect(mapStateToProps, { signinUser })(Signup);
