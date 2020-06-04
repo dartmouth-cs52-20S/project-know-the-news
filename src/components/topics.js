@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-no-target-blank */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -82,14 +83,11 @@ class Topics extends Component {
       );
     } else {
       const news = this.props.news.articles.map((article) => {
-        const imgStyle = {
-          backgroundImage: `url(${article.urlToImage})`,
-          backgroundSize: 'cover',
-        };
         return (
-          <li key={article.id} style={imgStyle} className="news-item">
+          <li key={article.id} className="news-item">
             <a id="news-link" href={article.url} target="_blank">
-              CLICK TO VIEW ARTICLE
+              <img alt="article" border="0" src={article.urlToImage} />
+              <p>{article.description}</p>
             </a>
           </li>
         );
@@ -144,3 +142,15 @@ function mapStateToProps(reduxState) {
 }
 
 export default connect(mapStateToProps, { fetchTopics, fetchTrendingNews })(Topics);
+
+/* const imgStyle = {
+          backgroundImage: `url(${article.urlToImage})`,
+          backgroundSize: 'cover',
+        };
+        return (
+          <li key={article.id} style={imgStyle} className="news-item">
+            <a id="news-link" href={article.url} target="_blank">
+              <image border="0" src={`url(${article.urlToImage})`} width="300" height="300" />
+            </a>
+          </li>
+        ); */
