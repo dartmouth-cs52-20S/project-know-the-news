@@ -25,21 +25,29 @@ class Topics extends Component {
   topicsList = () => {
     // if (document.getElementById('outlined-search') === '') {
     // this.filteredTopics = this.props.topics.map((topic) => {
-    const topics = this.props.topics.map((topic) => {
+    if (!this.props.topics) {
       return (
-        <li key={topic.id} className="postItem">
-          <NavLink to={`topics/${topic.id}`} exact id="link">
-            <Typography id="postTitle" variant="h4" component="h2">
-              {topic.title}
-            </Typography>
-            <Typography id="postTag" variant="subtitle1" component="h2" gutterBottom>
-              {topic.keywords}
-            </Typography>
-          </NavLink>
-        </li>
+        <div>
+          Loading
+        </div>
       );
-    });
-    return topics;
+    } else {
+      const topics = this.props.topics.map((topic) => {
+        return (
+          <li key={topic.id} className="postItem">
+            <NavLink to={`topics/${topic.id}`} exact id="link">
+              <Typography id="postTitle" variant="h4" component="h2">
+                {topic.title}
+              </Typography>
+              <Typography id="postTag" variant="subtitle1" component="h2" gutterBottom>
+                {topic.keywords}
+              </Typography>
+            </NavLink>
+          </li>
+        );
+      });
+      return topics;
+    }
     /*    }  else {
       this.filteredTopics = this.props.topics.map((topic) => {
         console.log(topic.links[0]);
@@ -60,24 +68,6 @@ class Topics extends Component {
   }
 
   newsList = () => {
-    const news = this.props.news.articles.map((article) => {
-      const imgStyle = {
-        backgroundImage: `url(${article.primary_image_link})`,
-        backgroundSize: 'cover',
-      };
-      return (
-        <li key={article.id} style={imgStyle} className="news-item">
-          <a id="news-link" href={article.link} target="_blank">
-            CLICK TO VIEW ARTICLE
-          </a>
-        </li>
-      );
-    });
-    return news;
-  }
-
-  render() {
-    console.log(this.props);
     if (!this.props.news) {
       return (
         <div>
@@ -91,39 +81,57 @@ class Topics extends Component {
         </div>
       );
     } else {
-      return (
-        <div id="topics-parent">
-          <div id="projName">
-            Varify
-          </div>
-          <div id="inner-page">
-            <div id="postsBG">
-              <div id="postsBGHead">
-                <div id="recent-topics">
-                  Saved Topics
-                </div>
-                <NavLink id="see-all-btn" className="nav" to="/topics">View All</NavLink>
-                <TextField id="outlined-search" label="Search Topics" type="search" variant="outlined" />
+      const news = this.props.news.articles.map((article) => {
+        const imgStyle = {
+          backgroundImage: `url(${article.urlToImage})`,
+          backgroundSize: 'cover',
+        };
+        return (
+          <li key={article.id} style={imgStyle} className="news-item">
+            <a id="news-link" href={article.url} target="_blank">
+              CLICK TO VIEW ARTICLE
+            </a>
+          </li>
+        );
+      });
+      return news;
+    }
+  }
+
+  render() {
+    console.log(this.props);
+    return (
+      <div id="topics-parent">
+        <div id="projName">
+          Varify
+        </div>
+        <div id="inner-page">
+          <div id="postsBG">
+            <div id="postsBGHead">
+              <div id="recent-topics">
+                Saved Topics
               </div>
-              <ul id="posts">
-                {/* {this.filteredTopics} */}
-                {this.topicsList()}
-              </ul>
+              <NavLink id="see-all-btn" className="nav" to="/topics">View All</NavLink>
+              <TextField id="outlined-search" label="Search Topics" type="search" variant="outlined" />
             </div>
-            <div id="news-feed-parent">
-              <div id="trending-news">
-                Trending News
-              </div>
-              <div id="news">
-                <ul>
-                  {this.newsList()}
-                </ul>
-              </div>
+            <ul id="posts">
+              {/* {this.filteredTopics} */}
+              {this.topicsList()}
+            </ul>
+          </div>
+          <div id="news-feed-parent">
+            <div id="trending-news">
+              Trending News
+            </div>
+            <div id="news">
+              <ul>
+                {this.newsList()}
+              </ul>
             </div>
           </div>
         </div>
-      );
-    }
+      </div>
+    );
   }
 }
 

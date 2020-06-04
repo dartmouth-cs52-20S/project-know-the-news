@@ -3,11 +3,6 @@ import axios from 'axios';
 const PRO_PUBLICA_CONGRESS_API_KEY = 'LlT0twpQA1rDULtJf5IAEDZ3jJBvNkepTFF81q6W';
 
 const ROOT_URL = 'https://know-the-news.herokuapp.com/api';
-// const ROOT_URL = 'http://localhost:9090/api';
-// const proxy_url = 'https://cors-anywhere.herokuapp.com/';
-// const NEWS_URL_ROOT = 'http://newsapi.org/v2/top-headlines?country=us&apiKey=4b73096a147945c980ba0aa573e06950';
-// const NEWS_URL_ROOT = 'https://gnews.io/api/v3/top-news?token=839052ba06527601423c536dcee7afef';
-const NEWS_URL_ROOT = 'https://api.breakingapi.com/news?type=headlines&category=world&locale=en-US&output=json&api_key=E64824A614724D0F8CE46E3721F7A584';
 const PRO_PUBLICA_API_URL = 'https://api.propublica.org/congress/v1/116/both/bills/active.json';
 
 // keys for actiontypes
@@ -28,7 +23,7 @@ export const ActionTypes = {
 
 export function fetchTrendingNews() {
   return (dispatch) => {
-    axios.get(NEWS_URL_ROOT)
+    axios.get(`${ROOT_URL}/newsAPI`)
       .then((response) => {
         dispatch({ type: ActionTypes.FETCH_NEWS, payload: response.data });
       }).catch((err) => console.log(err));
