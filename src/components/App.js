@@ -8,7 +8,6 @@ import {
   AppBar, IconButton, Toolbar,
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
 import Topics from './topics';
 import Topic from './topic';
 import AllTopics from './alltopics';
@@ -32,7 +31,9 @@ const renderAuth = (auth, signout, history) => {
   } else {
     return (
       <NavLink className="nav" to="/signin">
-        Sign in
+        <div className="nav">
+          Sign In
+        </div>
       </NavLink>
     );
   }
@@ -52,9 +53,6 @@ const Nav = (props) => {
         </div>
         <div id="navRight">
           {renderAuth(props.auth, props.signoutUser, props.history)}
-          <IconButton color="inherit" aria-label="menu">
-            <NavLink className="nav" to="#"><AddIcon /></NavLink>
-          </IconButton>
         </div>
       </Toolbar>
     </AppBar>
