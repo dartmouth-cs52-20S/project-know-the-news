@@ -1,3 +1,4 @@
+/* eslint-disable no-lonely-if */
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
@@ -7,7 +8,6 @@ import Button from '@material-ui/core/Button';
 import { fetchTopic, deleteTopic, unattachTopic } from '../actions/index';
 
 function mapStateToProps(reduxState) {
-  console.log(reduxState);
   return {
     currentTopic: reduxState.topics.current,
   };
@@ -17,6 +17,7 @@ class Topic extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isUserSure: false,
     };
   }
 
@@ -29,7 +30,18 @@ class Topic extends Component {
   }
 
   handleUnattachClick = () => {
+    this.setState({ isUserSure: true });
+    this.forceUpdate();
+  }
+
+  handleYesClick = () => {
     this.props.unattachTopic(this.props.match.params.topicID, this.props.history);
+    this.setState({ isUserSure: false });
+  }
+
+  handleNoClick = () => {
+    this.setState({ isUserSure: false });
+    this.forceUpdate();
   }
 
   linksList() {
@@ -57,7 +69,6 @@ class Topic extends Component {
 
   // eslint-disable-next-line class-methods-use-this
   renderTitle() {
-    console.log(this.props.currentTopic);
     return (
       <div id="topic-title">
         {this.props.currentTopic.title}
@@ -66,8 +77,9 @@ class Topic extends Component {
   }
 
   renderTopicPage() {
+    // return page with ability to anonimize user
     return (
-      <div id="topic-container">
+      <div>
         <h2 id="source-map-title">Source Sentiment Map</h2>
         <div id="source-map-container">
           <div id="source-map-inner-box">
@@ -86,13 +98,55 @@ class Topic extends Component {
               {this.linksList()}
             </ul>
           </div>
-          <div className="topic-creator">
-            {`This topic was created by: ${this.props.currentTopic.authorUsername}`}
-          </div>
         </div>
       </div>
     );
   }
+
+  renderTopicPageFooter() {
+    // dont give user ability to anonimize post because its not their post
+    if (this.props.currentTopic.authorUsername !== localStorage.getItem('currentUser')) {
+      return (
+        <div className="topic-page-footer">
+          <div className="topic-author">
+            {`Topic created by: ${this.props.currentTopic.authorUsername}`}
+          </div>
+        </div>
+
+      );
+    } else {
+      // give user ability to anonimize post because its their post
+      if (!this.state.isUserSure) {
+        return (
+          <div className="topic-page-footer">
+            <div className="topic-author">
+              {`Topic created by: ${this.props.currentTopic.authorUsername}`}
+            </div>
+            <div className="Dlt-topic-Btn">
+              <Button variant="contained" color="secondary" onClick={this.handleUnattachClick}>
+                Anonymize Topic
+              </Button>
+            </div>
+          </div>
+        );
+      } else {
+        return (
+          <div className="topic-page-footer">
+            <Button variant="contained" color="secondary" onClick={this.handleYesClick}>
+              Yes
+            </Button>
+            <Button variant="contained" color="secondary" onClick={this.handleNoClick}>
+              No
+            </Button>
+          </div>
+        );
+      }
+    }
+  }
+
+  /* <Button variant="contained" color="secondary" onClick={this.handleDeleteClick}>
+  Delete topic
+</Button> */
 
   render() {
     if (!this.props.currentTopic) {
@@ -101,7 +155,7 @@ class Topic extends Component {
           Loading
         </div>
       );
-    } else if (!this.props.currentTopic.title) {
+    } if (!this.props.currentTopic.title) {
       return (
         <div>
           Loading
@@ -114,15 +168,10 @@ class Topic extends Component {
             {this.renderTitle()}
           </div>
           <div>
-            {this.renderTopicPage()}
-          </div>
-          <div className="Dlt-topic-Btn">
-            <Button variant="contained" color="secondary" onClick={this.handleDeleteClick}>
-              Delete topic
-            </Button>
-            <Button variant="contained" color="secondary" onClick={this.handleUnattachClick}>
-              Anonymize Topic
-            </Button>
+            <div id="topic-container">
+              {this.renderTopicPage()}
+              {this.renderTopicPageFooter()}
+            </div>
           </div>
         </div>
       );
@@ -130,6 +179,4 @@ class Topic extends Component {
   }
 }
 
-// enables this.props.currentPost
-// and this.props.fetchPost, this.props.deletePost, and this.props.updatePost
 export default withRouter(connect(mapStateToProps, { fetchTopic, deleteTopic, unattachTopic })(Topic));

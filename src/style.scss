@@ -258,9 +258,21 @@ body {
 
     #topic-container{
         margin:30px;
-        height:850px;
+        height:880px;
         border-radius: 10px;
         background-color: #C2DDE6;
+
+        .topic-page-footer{
+            text-align:right;
+            margin-right: 40px;
+            margin-top: 30px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 18px;
+
+            .topic-author{
+                margin-bottom: 10px;
+            }
+        }
     }
 
     #source-map-title {

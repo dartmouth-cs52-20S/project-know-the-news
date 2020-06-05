@@ -7,7 +7,9 @@
 
 ## Architecture
 
-TBU
+Chrome Extension - (https://github.com/dartmouth-cs52-20S/project-other-know-the-news)
+API - (https://github.com/dartmouth-cs52-20S/project-api-know-the-news)
+Front-end - (https://github.com/dartmouth-cs52-20S/project-know-the-news)
 
 ## Setup
 
@@ -17,8 +19,7 @@ TBU
 
 ## Deployment
 
-* Run yarn deploy to deploy at knowthenews.surge.sh
-    * Won't work right now due to API being deployed locally
+* project is deployed at knowthenews.surge.sh
 
 ## Authors
 
@@ -28,3 +29,4 @@ Ayan Agarwal, Ryan Blankemeier, Alex Feng, Ray Li, Fedya Myagkov, Dylan Spector
 * Lab 4, CS52
 * Starter Pack, CS52
 * News-API
+* Congress-API
