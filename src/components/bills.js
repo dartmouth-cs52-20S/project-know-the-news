@@ -17,8 +17,8 @@ class Bills extends Component {
     return this.props.bills.map((billsOuter) => {
       return billsOuter.bills.map((bill, key) => {
         return (
-          <li key={bill.bill_id} className="postItem">
-            <Typography id="postTitle" variant="h4" component="h2">
+          <li key={bill.bill_id} className="congressPostItem">
+            <Typography id="congressPostTitle" variant="h4" component="h2">
               {bill.short_title}
             </Typography>
             <Typography>
@@ -59,7 +59,7 @@ class Bills extends Component {
                 <NavLink id="see-all-btn" className="nav" to="/topics">View All</NavLink>
                 <TextField id="outlined-search" label="Search Topics" type="search" variant="outlined" />
               </div>
-              <ul id="posts">
+              <ul id="congress-posts">
                 {/* {this.filteredTopics} */}
                 {this.billsList()}
               </ul>
