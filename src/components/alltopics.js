@@ -62,7 +62,7 @@ class AllTopics extends Component {
     return (
       <div id="topics-parent">
         <div id="projName">
-          Varify
+          Topics
         </div>
         <div id="postsBG">
           <div id="postsBGHead">
