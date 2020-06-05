@@ -2,7 +2,8 @@ import axios from 'axios';
 
 const PRO_PUBLICA_CONGRESS_API_KEY = 'LlT0twpQA1rDULtJf5IAEDZ3jJBvNkepTFF81q6W';
 
-const ROOT_URL = 'https://know-the-news.herokuapp.com/api';
+// const ROOT_URL = 'https://know-the-news.herokuapp.com/api';
+const ROOT_URL = 'http://localhost:9090/api';
 const PRO_PUBLICA_API_URL = 'https://api.propublica.org/congress/v1/116/both/bills/active.json';
 
 // keys for actiontypes
@@ -10,8 +11,9 @@ export const ActionTypes = {
   FETCH_TOPICS: 'FETCH_TOPICS',
   FETCH_TOPIC: 'FETCH_TOPIC',
   // UPDATE_POST: 'UPDATE_POST',
+  UPDATE_TOPIC_NO_USER: 'UPDATE_TOPIC_NO_USER',
   CREATE_TOPIC: 'CREATE_TOPIC',
-  // DELETE_POST: 'DELETE_POST',
+  DELETE_TOPIC: 'DELETE_TOPIC',
   FETCH_CONGRESS_MEMBERS: 'FETCH_CONGRESS_MEMBERS',
   FETCH_CONGRESS_BILLS: 'FETCH_CONGRESS_BILLS',
   FETCH_NEWS: 'FETCH_NEWS',
@@ -79,7 +81,7 @@ export function fetchTopicsBySearch(tag) {
 
 /* export function updatePost(id, post) {
   return (dispatch) => {
-    axios.put(`${ROOT_URL}/posts/${id}`, post, { headers: { authorization: localStorage.getItem('token') } })
+    axios.post(`${ROOT_URL}/posts/${id}`, post, { headers: { authorization: localStorage.getItem('token') } })
       .then((response) => {
         dispatch({ type: ActionTypes.UPDATE_POST, payload: response.data });
       })
@@ -88,6 +90,18 @@ export function fetchTopicsBySearch(tag) {
       });
   };
 } */
+
+export function unattachTopic(id, history) {
+  return (dispatch) => {
+    axios.put(`${ROOT_URL}/topics/${id}`, id, { headers: { authorization: localStorage.getItem('token') } })
+      .then((response) => {
+        dispatch({ type: ActionTypes.UPDATE_TOPIC_NO_USER, payload: response.data });
+      }).then(() => { history.push(`/topics/${id}`); })
+      .catch((error) => {
+        dispatch({ type: ActionTypes.ERROR_SET, error });
+      });
+  };
+}
 
 export function fetchTopic(id) {
   return (dispatch) => {
@@ -101,9 +115,9 @@ export function fetchTopic(id) {
   };
 }
 
-/* export function deletePost(id, history) {
+export function deleteTopic(id, history) {
   return (dispatch) => {
-    axios.delete(`${ROOT_URL}/posts/${id}`, { headers: { authorization: localStorage.getItem('token') } })
+    axios.delete(`${ROOT_URL}/topics/${id}`, { headers: { authorization: localStorage.getItem('token') } })
       .then((response) => {
         history.push('/');
       })
@@ -111,7 +125,7 @@ export function fetchTopic(id) {
         dispatch({ type: ActionTypes.ERROR_SET, error });
       });
   };
-} */
+}
 
 // trigger to deauth if there is error
 // can also use in your error reducer if you have one to display an error message
@@ -130,6 +144,7 @@ export function signinUser({ password, email }, history) {
       .then((response) => {
         dispatch({ type: ActionTypes.AUTH_USER });
         localStorage.setItem('token', response.data.token);
+        localStorage.setItem('currentUser', response.data.username);
       })
       .then(() => { history.push('/'); })
       .catch((error) => {
@@ -139,18 +154,12 @@ export function signinUser({ password, email }, history) {
 }
 
 export function signupUser(email, username, password, history) {
-  // takes in an object with email and password (minimal user object)
-  // returns a thunk method that takes dispatch as an argument (just like our create post method really)
-  // does an axios.post on the /signup endpoint (only difference from above)
-  // on success does:
-  //  dispatch({ type: ActionTypes.AUTH_USER });
-  //  localStorage.setItem('token', response.data.token);
-  // on error should dispatch(authError(`Sign Up Failed: ${error.response.data}`));
   return (dispatch) => {
     axios.post(`${ROOT_URL}/signup`, { email, password, username })
       .then((response) => {
         dispatch({ type: ActionTypes.AUTH_USER });
         localStorage.setItem('token', response.data.token);
+        localStorage.setItem('currentUser', response.data.username);
         history.push('/');
       })
       .catch((error) => {
