@@ -24,7 +24,6 @@ class AllTopics extends Component {
     // if (document.getElementById('outlined-search') === '') {
     // this.filteredTopics = this.props.topics.map((topic) => {
     const topics = this.props.topics.map((topic) => {
-      console.log(topic.links[0]);
       return (
         <li key={topic.id} className="postItem">
           <NavLink to={`topics/${topic.id}`} exact id="link">
@@ -32,7 +31,7 @@ class AllTopics extends Component {
               {topic.title}
             </Typography>
             <Typography id="postTag" variant="subtitle1" component="h2" gutterBottom>
-              {topic.keywords}
+              {`Created by: ${topic.authorUsername}`}
             </Typography>
           </NavLink>
         </li>

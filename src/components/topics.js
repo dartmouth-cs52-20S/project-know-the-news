@@ -26,6 +26,7 @@ class Topics extends Component {
   topicsList = () => {
     // if (document.getElementById('outlined-search') === '') {
     // this.filteredTopics = this.props.topics.map((topic) => {
+    console.log(localStorage.getItem('currentUser'));
     if (!this.props.topics) {
       return (
         <div>
@@ -34,18 +35,22 @@ class Topics extends Component {
       );
     } else {
       const topics = this.props.topics.map((topic) => {
-        return (
-          <li key={topic.id} className="postItem">
-            <NavLink to={`topics/${topic.id}`} exact id="link">
-              <Typography id="postTitle" variant="h4" component="h2">
-                {topic.title}
-              </Typography>
-              <Typography id="postTag" variant="subtitle1" component="h2" gutterBottom>
-                {topic.keywords}
-              </Typography>
-            </NavLink>
-          </li>
-        );
+        if (topic.author.username !== localStorage.getItem('currentUser')) {
+          return (null);
+        } else {
+          return (
+            <li key={topic.id} className="postItem">
+              <NavLink to={`topics/${topic.id}`} exact id="link">
+                <Typography id="postTitle" variant="h4" component="h2">
+                  {topic.title}
+                </Typography>
+                <Typography id="postTag" variant="subtitle1" component="h2" gutterBottom>
+                  {topic.keywords}
+                </Typography>
+              </NavLink>
+            </li>
+          );
+        }
       });
       return topics;
     }
@@ -107,7 +112,7 @@ class Topics extends Component {
           <div id="postsBG">
             <div id="postsBGHead">
               <div id="recent-topics">
-                Saved Topics
+                Your Topics
               </div>
               <NavLink id="see-all-btn" className="nav" to="/topics">View All</NavLink>
               <TextField id="outlined-search" label="Search Topics" type="search" variant="outlined" />
@@ -134,7 +139,7 @@ class Topics extends Component {
 }
 
 function mapStateToProps(reduxState) {
-  // console.log(reduxState);
+  console.log(reduxState);
   return {
     topics: reduxState.topics.all,
     news: reduxState.news.all,

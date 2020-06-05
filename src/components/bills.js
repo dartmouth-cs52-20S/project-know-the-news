@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
-// import TextField from '@material-ui/core/TextField';
+import TextField from '@material-ui/core/TextField';
 import { fetchCongressBills } from '../actions/index';
 
 class Bills extends Component {
@@ -32,30 +32,42 @@ class Bills extends Component {
 
   render() {
     console.log(this.props);
-    return (
-      <div id="topics-parent">
-        <div id="projName">
-          Varify
+    if (!this.props.bills) {
+      return (
+        <div>
+          Loading
         </div>
-        <div id="inner-page">
-          <div id="postsBG">
-            <div id="postsBGHead">
-              <div id="recent-topics">
-                Recent Bills
+      );
+    } else if (!this.props.bills) {
+      return (
+        <div>
+          Loading
+        </div>
+      );
+    } else {
+      return (
+        <div id="topics-parent">
+          <div id="projName">
+            Varify
+          </div>
+          <div id="inner-page">
+            <div id="postsBG">
+              <div id="postsBGHead">
+                <div id="recent-topics">
+                  Recent Bills
+                </div>
+                <NavLink id="see-all-btn" className="nav" to="/topics">View All</NavLink>
+                <TextField id="outlined-search" label="Search Topics" type="search" variant="outlined" />
               </div>
               <ul id="congress-posts">
                 {/* {this.filteredTopics} */}
                 {this.billsList()}
               </ul>
             </div>
-            <ul id="posts">
-              {/* {this.filteredTopics} */}
-              {this.billsList()}
-            </ul>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

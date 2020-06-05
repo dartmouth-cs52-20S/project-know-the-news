@@ -3,7 +3,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchTopic } from '../actions/index';
+import Button from '@material-ui/core/Button';
+import { fetchTopic, deleteTopic, unattachTopic } from '../actions/index';
 
 function mapStateToProps(reduxState) {
   console.log(reduxState);
@@ -21,6 +22,14 @@ class Topic extends Component {
 
   componentDidMount() {
     this.props.fetchTopic(this.props.match.params.topicID);
+  }
+
+  handleDeleteClick = () => {
+    this.props.deleteTopic(this.props.match.params.topicID, this.props.history);
+  }
+
+  handleUnattachClick = () => {
+    this.props.unattachTopic(this.props.match.params.topicID, this.props.history);
   }
 
   linksList() {
@@ -77,6 +86,9 @@ class Topic extends Component {
               {this.linksList()}
             </ul>
           </div>
+          <div className="topic-creator">
+            {`This topic was created by: ${this.props.currentTopic.authorUsername}`}
+          </div>
         </div>
       </div>
     );
@@ -104,6 +116,14 @@ class Topic extends Component {
           <div>
             {this.renderTopicPage()}
           </div>
+          <div className="Dlt-topic-Btn">
+            <Button variant="contained" color="secondary" onClick={this.handleDeleteClick}>
+              Delete topic
+            </Button>
+            <Button variant="contained" color="secondary" onClick={this.handleUnattachClick}>
+              Anonymize Topic
+            </Button>
+          </div>
         </div>
       );
     }
@@ -112,4 +132,4 @@ class Topic extends Component {
 
 // enables this.props.currentPost
 // and this.props.fetchPost, this.props.deletePost, and this.props.updatePost
-export default withRouter(connect(mapStateToProps, { fetchTopic })(Topic));
+export default withRouter(connect(mapStateToProps, { fetchTopic, deleteTopic, unattachTopic })(Topic));
