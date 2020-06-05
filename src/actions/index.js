@@ -11,7 +11,7 @@ export const ActionTypes = {
   FETCH_TOPICS: 'FETCH_TOPICS',
   FETCH_TOPIC: 'FETCH_TOPIC',
   // UPDATE_POST: 'UPDATE_POST',
-  UPDATE_TOPIC_NO_USER: 'UPDATE_TOPIC_NO_USER',
+  DETACH_TOPIC_FROM_USER: 'DETACH_TOPIC_FROM_USER',
   CREATE_TOPIC: 'CREATE_TOPIC',
   DELETE_TOPIC: 'DELETE_TOPIC',
   FETCH_CONGRESS_MEMBERS: 'FETCH_CONGRESS_MEMBERS',
@@ -94,9 +94,10 @@ export function fetchTopicsBySearch(tag) {
 export function unattachTopic(id, history) {
   return (dispatch) => {
     axios.put(`${ROOT_URL}/topics/${id}`, id, { headers: { authorization: localStorage.getItem('token') } })
-      .then((response) => {
-        dispatch({ type: ActionTypes.UPDATE_TOPIC_NO_USER, payload: response.data });
-      }).then(() => { history.push(`/topics/${id}`); })
+      .then(() => axios.get(`${ROOT_URL}/topics/${id}`)
+        .then((response) => {
+          dispatch({ type: ActionTypes.FETCH_TOPIC, payload: response.data });
+        }).then(() => { history.push(`/topics/${id}`); }))
       .catch((error) => {
         dispatch({ type: ActionTypes.ERROR_SET, error });
       });
