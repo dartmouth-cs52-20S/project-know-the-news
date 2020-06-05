@@ -27,7 +27,13 @@ class Topics extends Component {
     // if (document.getElementById('outlined-search') === '') {
     // this.filteredTopics = this.props.topics.map((topic) => {
     console.log(localStorage.getItem('currentUser'));
-    if (!this.props.topics) {
+    if (!this.props.auth) {
+      return (
+        <div>
+          Sign In to view your saved topics! Or Click on View All to view others saved topics.
+        </div>
+      );
+    } else if (!this.props.topics) {
       return (
         <div>
           Loading
@@ -143,6 +149,7 @@ function mapStateToProps(reduxState) {
   return {
     topics: reduxState.topics.all,
     news: reduxState.news.all,
+    auth: reduxState.auth.authenticated,
   };
 }
 

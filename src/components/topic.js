@@ -132,11 +132,11 @@ class Topic extends Component {
       } else {
         return (
           <div className="topic-page-footer">
-            <Button variant="contained" color="secondary" onClick={this.handleYesClick}>
-              Yes
+            <Button className="no-Btn" variant="contained" color="primary" onClick={this.handleNoClick}>
+              Take me back!
             </Button>
-            <Button variant="contained" color="secondary" onClick={this.handleNoClick}>
-              No
+            <Button className="yes-Btn" variant="contained" color="secondary" onClick={this.handleYesClick}>
+              Are you sure?
             </Button>
           </div>
         );
@@ -162,6 +162,7 @@ class Topic extends Component {
         </div>
       );
     } else {
+      console.log(this.props.currentTopic);
       return (
         <div className="topic-parent">
           <div>
@@ -173,6 +174,9 @@ class Topic extends Component {
               {this.renderTopicPageFooter()}
             </div>
           </div>
+          <Button variant="contained" color="secondary" onClick={this.handleDeleteClick}>
+            Delete topic
+          </Button>
         </div>
       );
     }
