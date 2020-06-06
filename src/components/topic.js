@@ -50,7 +50,6 @@ class Topic extends Component {
   }
 
   handleCommentPostClick = () => {
-    console.log(this.state.commentContent);
     this.props.postComment(this.props.match.params.topicID, this.state.commentContent, this.props.history);
     this.setState({ commentContent: '' });
   }
@@ -62,7 +61,7 @@ class Topic extends Component {
   linksList() {
     const links = this.props.currentTopic.articles.map((article) => {
       return (
-        <li id="link-item-parent">
+        <li key={article.id} id="link-item-parent">
           <a href={article.link} id="link-item" target="_blank">{article.title}</a>
           <p id="article-description">{article.link}</p>
         </li>
@@ -152,8 +151,7 @@ class Topic extends Component {
                 rows={4}
                 variant="outlined"
                 onChange={this.onCommentChange}
-              // style={{ margin: 8 }}
-                fullWidth="true"
+                fullWidth
               />
             </div>
             <div className="button">
@@ -179,18 +177,18 @@ class Topic extends Component {
             <div className="TextField">
               <TextField
                 id="outlined-multiline-static"
-                label="Comment"
+                label="Sign in to Comment"
                 value={this.state.commentContent}
                 multiline
                 rows={4}
                 variant="outlined"
                 onChange={this.onCommentChange}
-              // style={{ margin: 8 }}
-                fullWidth="true"
+                disabled
+                fullWidth
               />
             </div>
             <div className="button">
-              <Button disabled="true" variant="contained" color="primary" onClick={this.handleCommentPostClick}>
+              <Button disabled variant="contained" color="primary" onClick={this.handleCommentPostClick}>
                 Sign in to comment
               </Button>
             </div>
@@ -259,7 +257,6 @@ class Topic extends Component {
         </div>
       );
     } else {
-      console.log(this.props.currentTopic);
       return (
         <div>
           <div className="topic-parent">

@@ -7,25 +7,28 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import { fetchTopics, fetchTrendingNews } from '../actions/index';
 
+
+let renderCount = 0;
+
 class Topics extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       // filteredTopics: [],
+
     };
   }
 
   componentDidMount() {
     this.props.fetchTopics();
     this.props.fetchTrendingNews();
+    renderCount = 0;
   }
 
   topicsList = () => {
     // if (document.getElementById('outlined-search') === '') {
     // this.filteredTopics = this.props.topics.map((topic) => {
-
-    console.log(localStorage.getItem('currentUser'));
     if (!this.props.auth) {
       return (
         <div>
@@ -40,9 +43,8 @@ class Topics extends Component {
       );
     } else {
       const topics = this.props.topics.map((topic) => {
-        if (topic.author.username !== localStorage.getItem('currentUser')) {
-          return (null);
-        } else {
+        if (topic.author.username === localStorage.getItem('currentUser')) {
+          renderCount += 1;
           return (
             <li key={topic.id} className="postItem">
               <NavLink to={`topics/${topic.id}`} exact id="link">
@@ -55,6 +57,8 @@ class Topics extends Component {
               </NavLink>
             </li>
           );
+        } else {
+          return (null);
         }
       });
       return topics;
@@ -76,6 +80,25 @@ class Topics extends Component {
         );
       });
     } */
+  }
+
+  renderNoTopics = () => {
+    if (!this.props.topics || !this.props.auth) {
+      return (
+        <div>
+          Loading
+        </div>
+      );
+    } else if (renderCount === 0) {
+      // render if there are no topics attached to the current user
+      return (
+        <div>
+          Download Our chrome (https://github.com/dartmouth-cs52-20S/project-other-know-the-news) extension and save some topics! Or go check out other peoples topics by pressing &quot;View All&quot;
+        </div>
+      );
+    } else {
+      return (null);
+    }
   }
 
   newsList = () => {
@@ -125,6 +148,7 @@ class Topics extends Component {
             <ul id="posts">
               {/* {this.filteredTopics} */}
               {this.topicsList()}
+              {this.renderNoTopics()}
             </ul>
           </div>
           <div id="news-feed-parent">
