@@ -5,11 +5,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import { fetchTopic, deleteTopic, unattachTopic } from '../actions/index';
+import TextField from '@material-ui/core/TextField';
+import {
+  fetchTopic, deleteTopic, unattachTopic, postComment,
+} from '../actions/index';
 
 function mapStateToProps(reduxState) {
   return {
     currentTopic: reduxState.topics.current,
+    auth: reduxState.auth.authenticated,
   };
 }
 
@@ -18,6 +22,7 @@ class Topic extends Component {
     super(props);
     this.state = {
       isUserSure: false,
+      commentContent: '',
     };
   }
 
@@ -44,6 +49,16 @@ class Topic extends Component {
     this.forceUpdate();
   }
 
+  handleCommentPostClick = () => {
+    console.log(this.state.commentContent);
+    this.props.postComment(this.props.match.params.topicID, this.state.commentContent, this.props.history);
+    this.setState({ commentContent: '' });
+  }
+
+  onCommentChange = (event) => {
+    this.setState({ commentContent: event.target.value });
+  }
+
   linksList() {
     const links = this.props.currentTopic.articles.map((article) => {
       return (
@@ -59,12 +74,24 @@ class Topic extends Component {
   linksListSourceMap() {
     const links = this.props.currentTopic.articles.map((article) => {
       return (
-        <div id="source-box">
+        <div key={article.id} id="source-box">
           <a href={article.link} id="source-item" target="_blank">{article.title}</a>
         </div>
       );
     });
     return links;
+  }
+
+  renderCommentList() {
+    const commentsList = this.props.currentTopic.comments.map((comment) => {
+      return (
+        <li key={comment.id} id="comment-item-parent">
+          <p id="comment-item">{comment.content}</p>
+          <p id="comment-author">{`- @${comment.authorUsername}`}</p>
+        </li>
+      );
+    });
+    return commentsList;
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -101,6 +128,76 @@ class Topic extends Component {
         </div>
       </div>
     );
+  }
+
+  renderTopicPageComments() {
+    if (this.props.auth) {
+      return (
+        <div>
+          <h3 id="source-map-title">Comments</h3>
+          <div id="comment-list-container">
+            <div id="comments">
+              <ul>
+                {this.renderCommentList()}
+              </ul>
+            </div>
+          </div>
+          <div id="comment-footer">
+            <div className="TextField">
+              <TextField
+                id="outlined-multiline-static"
+                label="Comment"
+                value={this.state.commentContent}
+                multiline
+                rows={4}
+                variant="outlined"
+                onChange={this.onCommentChange}
+              // style={{ margin: 8 }}
+                fullWidth="true"
+              />
+            </div>
+            <div className="button">
+              <Button variant="contained" color="primary" onClick={this.handleCommentPostClick}>
+                Post Comment
+              </Button>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h3 id="source-map-title">Comments</h3>
+          <div id="comment-list-container">
+            <div id="comments">
+              <ul>
+                {this.renderCommentList()}
+              </ul>
+            </div>
+          </div>
+          <div id="comment-footer">
+            <div className="TextField">
+              <TextField
+                id="outlined-multiline-static"
+                label="Comment"
+                value={this.state.commentContent}
+                multiline
+                rows={4}
+                variant="outlined"
+                onChange={this.onCommentChange}
+              // style={{ margin: 8 }}
+                fullWidth="true"
+              />
+            </div>
+            <div className="button">
+              <Button disabled="true" variant="contained" color="primary" onClick={this.handleCommentPostClick}>
+                Sign in to comment
+              </Button>
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 
   renderTopicPageFooter() {
@@ -164,14 +261,19 @@ class Topic extends Component {
     } else {
       console.log(this.props.currentTopic);
       return (
-        <div className="topic-parent">
-          <div>
-            {this.renderTitle()}
-          </div>
-          <div>
-            <div id="topic-container">
-              {this.renderTopicPage()}
-              {this.renderTopicPageFooter()}
+        <div>
+          <div className="topic-parent">
+            <div>
+              {this.renderTitle()}
+            </div>
+            <div>
+              <div id="topic-container">
+                {this.renderTopicPage()}
+                {this.renderTopicPageFooter()}
+              </div>
+              <div id="comment-container">
+                {this.renderTopicPageComments()}
+              </div>
             </div>
           </div>
           <Button variant="contained" color="secondary" onClick={this.handleDeleteClick}>
@@ -183,4 +285,6 @@ class Topic extends Component {
   }
 }
 
-export default withRouter(connect(mapStateToProps, { fetchTopic, deleteTopic, unattachTopic })(Topic));
+export default withRouter(connect(mapStateToProps, {
+  fetchTopic, deleteTopic, unattachTopic, postComment,
+})(Topic));

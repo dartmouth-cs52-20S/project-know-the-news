@@ -14,6 +14,7 @@ export const ActionTypes = {
   DETACH_TOPIC_FROM_USER: 'DETACH_TOPIC_FROM_USER',
   CREATE_TOPIC: 'CREATE_TOPIC',
   DELETE_TOPIC: 'DELETE_TOPIC',
+  CREATE_COMMENT: 'CREATE_COMMENT',
   FETCH_CONGRESS_MEMBERS: 'FETCH_CONGRESS_MEMBERS',
   FETCH_CONGRESS_BILLS: 'FETCH_CONGRESS_BILLS',
   FETCH_NEWS: 'FETCH_NEWS',
@@ -59,6 +60,20 @@ export function createTopic(articles, history) {
       .then((response) => {
         history.push('/');
       })
+      .catch((error) => {
+        dispatch({ type: ActionTypes.ERROR_SET, error });
+      });
+  };
+}
+
+export function postComment(id, content, history) {
+  console.log('firing');
+  return (dispatch) => {
+    axios.post(`${ROOT_URL}/topics/${id}/comments`, { content }, { headers: { authorization: localStorage.getItem('token') } })
+      .then(() => axios.get(`${ROOT_URL}/topics/${id}`)
+        .then((response) => {
+          dispatch({ type: ActionTypes.FETCH_TOPIC, payload: response.data });
+        }).then(() => { history.push(`/topics/${id}`); }))
       .catch((error) => {
         dispatch({ type: ActionTypes.ERROR_SET, error });
       });

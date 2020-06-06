@@ -8,15 +8,13 @@ import TextField from '@material-ui/core/TextField';
 import { fetchTopics, fetchTrendingNews } from '../actions/index';
 
 class Topics extends Component {
-/*   constructor(props) {
+  constructor(props) {
     super(props);
 
     this.state = {
-      filteredTopics: [],
+      // filteredTopics: [],
     };
-
-    this.filteredTopics = this.filteredTopics.bind(this);
-  } */
+  }
 
   componentDidMount() {
     this.props.fetchTopics();
@@ -26,6 +24,7 @@ class Topics extends Component {
   topicsList = () => {
     // if (document.getElementById('outlined-search') === '') {
     // this.filteredTopics = this.props.topics.map((topic) => {
+
     console.log(localStorage.getItem('currentUser'));
     if (!this.props.auth) {
       return (
