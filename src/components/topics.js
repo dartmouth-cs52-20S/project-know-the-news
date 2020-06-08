@@ -94,9 +94,7 @@ class Topics extends Component {
   renderNoTopics = () => {
     if (!this.props.topics || !this.props.auth) {
       return (
-        <div>
-          Loading
-        </div>
+        <br />
       );
     } else if (renderCount === 0) {
       // render if there are no topics attached to the current user
