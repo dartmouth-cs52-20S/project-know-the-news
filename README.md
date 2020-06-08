@@ -30,7 +30,7 @@
 
 ## Deployment
 
-* project is deployed at knowthenews.surge.sh
+* project is deployed at http://knowthenews.surge.sh/
 * the chrome extension is currently only in github but hopefully will get approved soon by chrome webstore and it will be officially online.
 
 ## Authors
