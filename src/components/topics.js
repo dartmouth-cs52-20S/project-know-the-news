@@ -34,8 +34,10 @@ class Topics extends Component {
   topicsList = () => {
     if (!this.props.auth) {
       return (
-        <div>
-          Sign In to view your saved topics! Or Click on View All to view others saved topics.
+        <div className="no-topics-message">
+          <div>
+            Sign In to view your saved topics! Or Click on View All to view others saved topics.
+          </div>
         </div>
       );
     } else if (!this.props.topics) {
@@ -99,8 +101,15 @@ class Topics extends Component {
     } else if (renderCount === 0) {
       // render if there are no topics attached to the current user
       return (
-        <div>
-          Download Our chrome (https://github.com/dartmouth-cs52-20S/project-other-know-the-news) extension and save some topics! Or go check out other peoples topics by pressing &quot;View All&quot;
+        <div className="no-topics-message">
+          <div>
+            You haven&apos;t save any topics :(
+          </div>
+          <br />
+          <div>
+            Download Our chrome extension  (https://github.com/dartmouth-cs52-20S/project-other-know-the-news) and save some topics!
+            Or go check out other peoples topics by pressing &quot;View All&quot;
+          </div>
         </div>
       );
     } else {
