@@ -60,12 +60,34 @@ class Topic extends Component {
 
   linksList() {
     const links = this.props.currentTopic.articles.map((article) => {
-      return (
-        <li key={article.id} id="link-item-parent">
-          <a href={article.link} id="link-item" target="_blank">{article.title}</a>
-          <p id="article-description">{article.link}</p>
-        </li>
-      );
+      if (article.sentiment <= 33) {
+        const liStyle = {
+          border: '3px solid #F36970', // red
+        };
+        return (
+          <li key={article.id} id="link-item-parent" style={liStyle}>
+            <a href={article.link} id="link-item" target="_blank">{article.title}</a>
+          </li>
+        );
+      } else if (article.sentiment > 33 || article.sentiment <= 66) {
+        const liStyle = {
+          border: '3px solid #F7CB26', // yellow
+        };
+        return (
+          <li key={article.id} id="link-item-parent" style={liStyle}>
+            <a href={article.link} id="link-item" target="_blank">{article.title}</a>
+          </li>
+        );
+      } else {
+        const liStyle = {
+          border: '3px solid #52B308', // green
+        };
+        return (
+          <li key={article.id} id="link-item-parent" style={liStyle}>
+            <a href={article.link} id="link-item" target="_blank">{article.title}</a>
+          </li>
+        );
+      }
     });
     return links;
   }
@@ -93,7 +115,6 @@ class Topic extends Component {
     return commentsList;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   renderTitle() {
     return (
       <div id="topic-title">
@@ -106,18 +127,12 @@ class Topic extends Component {
     // return page with ability to anonimize user
     return (
       <div>
-        <h2 id="source-map-title">Source Sentiment Map</h2>
-        <div id="source-map-container">
-          <div id="source-map-inner-box">
-            {this.linksListSourceMap()}
-          </div>
-          <div id="meter-key">
-            <h3>Negative</h3>
-            <h3>Neutral</h3>
-            <h3>Positive</h3>
+        <div id="topic-header">
+          <h3 id="source-map-title">Related Article&apos;s List</h3>
+          <div id="colors">
+            <div id="neg">Negative</div><div id="net"> Neutral</div><div id="pos"> Positive</div>
           </div>
         </div>
-        <h3 id="source-map-title">Article List</h3>
         <div id="article-list-container">
           <div id="sources">
             <ul>
@@ -239,10 +254,6 @@ class Topic extends Component {
     }
   }
 
-  /* <Button variant="contained" color="secondary" onClick={this.handleDeleteClick}>
-  Delete topic
-</Button> */
-
   render() {
     if (!this.props.currentTopic) {
       return (
@@ -273,9 +284,6 @@ class Topic extends Component {
               </div>
             </div>
           </div>
-          <Button variant="contained" color="secondary" onClick={this.handleDeleteClick}>
-            Delete topic
-          </Button>
         </div>
       );
     }
@@ -285,3 +293,20 @@ class Topic extends Component {
 export default withRouter(connect(mapStateToProps, {
   fetchTopic, deleteTopic, unattachTopic, postComment,
 })(Topic));
+
+/* <h2 id="source-map-title">Source Sentiment Map</h2>
+        <div id="source-map-container">
+          <div id="source-map-inner-box">
+            {this.linksListSourceMap()}
+          </div>
+          <div id="meter-key">
+            <h3>Negative</h3>
+            <h3>Neutral</h3>
+            <h3>Positive</h3>
+          </div>
+        </div> */
+
+
+/* <Button variant="contained" color="secondary" onClick={this.handleDeleteClick}>
+  Delete topic
+</Button> */

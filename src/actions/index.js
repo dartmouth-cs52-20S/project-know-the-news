@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const PRO_PUBLICA_CONGRESS_API_KEY = 'LlT0twpQA1rDULtJf5IAEDZ3jJBvNkepTFF81q6W';
 
-// const ROOT_URL = 'https://know-the-news.herokuapp.com/api';
-const ROOT_URL = 'http://localhost:9090/api';
+const ROOT_URL = 'https://know-the-news.herokuapp.com/api';
+// const ROOT_URL = 'http://localhost:9090/api';
 const PRO_PUBLICA_API_URL = 'https://api.propublica.org/congress/v1/116/both/bills/active.json';
 
 // keys for actiontypes
@@ -67,7 +67,6 @@ export function createTopic(articles, history) {
 }
 
 export function postComment(id, content, history) {
-  console.log('firing');
   return (dispatch) => {
     axios.post(`${ROOT_URL}/topics/${id}/comments`, { content }, { headers: { authorization: localStorage.getItem('token') } })
       .then(() => axios.get(`${ROOT_URL}/topics/${id}`)

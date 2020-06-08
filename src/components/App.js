@@ -24,7 +24,7 @@ const renderAuth = (auth, signout, history) => {
     return (
       <Button color="inherit" onClick={() => signout(history)}>
         <div className="nav">
-          Sign Out
+          Sign Out - {localStorage.getItem('currentUser')}
         </div>
       </Button>
     );
@@ -60,7 +60,6 @@ const Nav = (props) => {
 };
 
 function mapStateToProps(reduxState) {
-  console.log(reduxState);
   return {
     auth: reduxState.auth.authenticated,
   };

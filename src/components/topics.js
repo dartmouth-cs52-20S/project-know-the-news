@@ -1,3 +1,5 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable consistent-return */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-no-target-blank */
 import React, { Component } from 'react';
@@ -15,8 +17,7 @@ class Topics extends Component {
     super(props);
 
     this.state = {
-      // filteredTopics: [],
-
+      searchValue: '',
     };
   }
 
@@ -26,9 +27,11 @@ class Topics extends Component {
     renderCount = 0;
   }
 
+  handleSearchValueChange = (event) => {
+    this.setState({ searchValue: event.target.value });
+  }
+
   topicsList = () => {
-    // if (document.getElementById('outlined-search') === '') {
-    // this.filteredTopics = this.props.topics.map((topic) => {
     if (!this.props.auth) {
       return (
         <div>
@@ -43,7 +46,7 @@ class Topics extends Component {
       );
     } else {
       const topics = this.props.topics.map((topic) => {
-        if (topic.author.username === localStorage.getItem('currentUser')) {
+        if (topic.author.username === localStorage.getItem('currentUser') && this.state.searchValue === '') {
           renderCount += 1;
           return (
             <li key={topic.id} className="postItem">
@@ -57,29 +60,33 @@ class Topics extends Component {
               </NavLink>
             </li>
           );
+        } else if (topic.author.username === localStorage.getItem('currentUser')) {
+          const titleArray = topic.title.split(' ');
+          const searchArray = this.state.searchValue.split(' ');
+          for (let i = 0; i < searchArray.length; i += 1) {
+            for (let j = 0; j < titleArray.length; j += 1) {
+              if (searchArray[i].toLowerCase() === titleArray[j].toLowerCase()) {
+                return (
+                  <li key={topic.id} className="postItem">
+                    <NavLink to={`topics/${topic.id}`} exact id="link">
+                      <Typography id="postTitle" variant="h4" component="h2">
+                        {topic.title}
+                      </Typography>
+                      <Typography id="postTag" variant="subtitle1" component="h2" gutterBottom>
+                        {`Created by: ${topic.authorUsername}`}
+                      </Typography>
+                    </NavLink>
+                  </li>
+                );
+              }
+            }
+          }
         } else {
           return (null);
         }
       });
       return topics;
     }
-    /*    }  else {
-      this.filteredTopics = this.props.topics.map((topic) => {
-        console.log(topic.links[0]);
-        return (
-          <li key={topic.id} className="postItem">
-            <NavLink to={`posts/${topic.id}`} exact id="link">
-              <Typography id="postTitle" variant="h4" component="h2">
-                {topic.links[0]}
-              </Typography>
-              <Typography id="postTag" variant="subtitle1" component="h2" gutterBottom>
-                {topic.keywords}
-              </Typography>
-            </NavLink>
-          </li>
-        );
-      });
-    } */
   }
 
   renderNoTopics = () => {
@@ -130,7 +137,6 @@ class Topics extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div id="topics-parent">
         <div id="projName">
@@ -143,10 +149,16 @@ class Topics extends Component {
                 Your Topics
               </div>
               <NavLink id="see-all-btn" className="nav" to="/topics">View All</NavLink>
-              <TextField id="outlined-search" label="Search Topics" type="search" variant="outlined" />
+              <TextField
+                id="outlined-search"
+                label="Search Topics"
+                type="search"
+                variant="outlined"
+                value={this.state.searchValue}
+                onChange={this.handleSearchValueChange}
+              />
             </div>
             <ul id="posts">
-              {/* {this.filteredTopics} */}
               {this.topicsList()}
               {this.renderNoTopics()}
             </ul>
@@ -168,7 +180,6 @@ class Topics extends Component {
 }
 
 function mapStateToProps(reduxState) {
-  console.log(reduxState);
   return {
     topics: reduxState.topics.all,
     news: reduxState.news.all,
