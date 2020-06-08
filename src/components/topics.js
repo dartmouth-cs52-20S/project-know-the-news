@@ -101,11 +101,11 @@ class Topics extends Component {
       return (
         <div className="no-topics-message">
           <div>
-            You haven&apos;t save any topics :(
+            You haven&apos;t saved any topics :(
           </div>
           <br />
           <div>
-            Download Our chrome extension  (https://github.com/dartmouth-cs52-20S/project-other-know-the-news) and save some topics!
+            Download Our <a href="https://chrome.google.com/webstore/detail/varify/denggifplbggoleagckomiilhcoeofka?authuser=0&hl=en" target="_blank">chrome extension</a> and save some topics!
             Or go check out other peoples topics by pressing &quot;View All&quot;
           </div>
         </div>

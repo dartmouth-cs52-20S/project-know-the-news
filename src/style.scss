@@ -832,4 +832,13 @@ img {
 .no-topics-message{
     font-family: 'Montserrat';
     font-size:30px;
+
+    a {
+        font-style: italic;
+        color: white;
+    }
+
+    a:hover{
+        text-decoration: underline;
+    }
 }

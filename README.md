@@ -12,16 +12,27 @@
 
 ## Setup
 
-* To get the full experience of our project you should also make use of our chrome extension - (https://github.com/dartmouth-cs52-20S/project-other-know-the-news). If you clone the extension and then 'load unpack' into chrome by navigating to (chrome://extensions/) and pressing the load unpacked button, and then following the instructions in chrome to install the extension. 
+### Non-Local Setup
+
+* To get the full experience of our project you should also make use of our [chrome extension](https://chrome.google.com/webstore/detail/denggifplbggoleagckomiilhcoeofka/publish-accepted?authuser=0&hl=en). Install it in chrome, go to some news articles and see how it works.
 
 * After you have installed the chrome extension, you can navigate to any news article on any news source and use the "Fetch News" button to find other articles on the same topic but from another point of view.
 
 * If you decide to save a topic by pressing the "Save Topic" button you can view the topic on our website listed below.
 
+### Local Setup
+
+* . First you must git clone the following repositories and run yarn install/yarn start on then -
+  - [Front End](https://github.com/dartmouth-cs52-20S/project-know-the-news)
+    - Change the root_url in actions/index to the local api server you will start. 
+  - [API Server](https://github.com/dartmouth-cs52-20S/project-api-know-the-news)
+
+* Second clone the chrome extension [repository](https://github.com/dartmouth-cs52-20S/project-other-know-the-news) navigate to chrome [extensions](chrome://extensions/) in your browser, toggle into developer mode in the upper right hand corner, then press loud unpacked in the upper left hand corner and choose the repository you just cloned. You are good to use it on any news site!
+
 ## Deployment
 
-* project is deployed at http://knowthenews.surge.sh/
-* the chrome extension is currently only in github but hopefully will get approved soon by chrome webstore and it will be officially online.
+* [Front End](http://knowthenews.surge.sh/)
+* [Chrome Extension](https://chrome.google.com/webstore/detail/denggifplbggoleagckomiilhcoeofka/publish-accepted?authuser=0&hl=en) 
 
 ## Screenshots 
 
