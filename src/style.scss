@@ -258,7 +258,8 @@ body {
 
     #topic-container{
         margin:30px;
-        height:965px;
+        height:auto;
+        padding-bottom: 10px;
         border-radius: 10px;
         background-color: #C2DDE6;
 
@@ -279,10 +280,43 @@ body {
         }
     }
 
+    #topic-header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #colors {
+        display: flex;
+        align-items: center;
+        margin-right: 40px;
+        margin-top:30px;
+        margin-bottom:30px;
+        font-family: 'Righteous';
+
+        #neg{
+           margin-right:8px;
+           background-color: #F36970;
+           padding:10px;
+           border-radius: 5px; 
+        }
+        #net{
+            margin-right:8px;
+            background-color: #F7CB26;
+            padding:10px;
+            border-radius: 5px; 
+        }
+        #pos{
+            background-color: #52B308;
+            padding:10px;
+            border-radius: 5px;
+        }
+    }
+    
     #source-map-title {
         font-family: 'Righteous';
-        padding-top: 30px;
+        margin-top: 30px;
         margin-left: 40px;
+        font-size:30px;
     }
 
     #source-map-container {
@@ -338,17 +372,18 @@ body {
     #article-list-container{
         margin-right:40px;
         margin-left:40px;
-        height:385px;
+        height:auto;
         border-radius: 5px;
         background-color: white; 
     }
 
     #sources{
         padding-top:10px;
+        padding-bottom:10px;
         font-family: 'Open Sans', sans-serif;
-        height:375px;
-        overflow-y: scroll;
-        overflow: auto;
+        height:auto;
+        // overflow-y: scroll;
+        // overflow: auto;
 
         ul{
             list-style-type: none;
@@ -365,7 +400,7 @@ body {
 
     #comment-container{
         margin:30px;
-        max-height:960px;
+        height:auto;
         border-radius: 10px;
         background-color: #C2DDE6;
 
@@ -544,8 +579,10 @@ a {
 #link-item-parent {
     background-color: #E9E9E9;
     border-radius: 5px;
-    margin-bottom: 3px;
+    margin-bottom: 20px;
+    text-align: left;
     a {
+        display: block;
         margin-left: 7px;
         margin-right: 7px;
     }
@@ -556,7 +593,9 @@ a {
 }
 
 #link-item {
-    font-weight: bold;
+    font-family:'Montserrat';
+    //font-weight: bold;
+    font-size: 20px;
 }
 
 #signInPage {
