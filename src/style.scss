@@ -168,6 +168,25 @@ body {
             align-items: initial;
             padding: 5px;
         }
+
+        #congressPostTitle:hover{
+            text-decoration: underline;
+        }
+    }
+
+    .congressPostSummary {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 200px;
+        height: 200px;
+        overflow: auto;
+        overflow: auto;
+        background-color: #26caa1;
+        margin: 20px;
+        position: relative;
+        box-shadow: 6px 7px 8px -6px rgba(0,0,0,0.75);
+        color: black;
     }
 
     .postItem {
@@ -841,4 +860,497 @@ img {
     a:hover{
         text-decoration: underline;
     }
+}
+
+#SmalltopNavBar{
+    display:none;
+}
+
+@media only screen and (max-width: 800px) {
+
+#topNavBar{
+    display:none;
+}
+
+#topBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#SmalltopNavBar{
+    position: sticky;
+    top: 0;
+    display:block;
+
+    #navLeftItem{
+        padding:8px;
+        color: white;
+    }
+
+    .nav {
+        text-decoration: none;
+        color: #ffffff;
+        font-family: 'Righteous';
+        font-size: 10px;
+    }
+
+    #navRight {
+        display: flex;
+        align-items: center;
+        flex-direction:column;
+        justify-content: center;
+        margin-right:0px;
+        a {
+            font-size: 10px;
+        }
+        button {
+            font-size: 2px;
+            span {
+                font-size: 4px;
+            }
+        }
+    }
+
+    .logo {
+        background-image: url('img/logo.png');
+        width: 35px;
+        height: 35px;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    i {
+        margin-right:10px;
+    }
+}
+
+.topic-parent{
+    
+    #topic-title{
+        padding:7px;
+        font-family: 'Righteous';
+        font-size: 20px;
+        text-align: center;
+        margin-top:10px;
+        margin-bottom:10px;
+    }
+
+    #topic-container{
+        height:auto;
+        width:auto;
+        margin-top:5px;
+        margin-right:5px;
+        margin-left:5px;
+        padding-bottom: 10px;
+        border-radius: 3px;
+        background-color: #C2DDE6;
+
+        .topic-page-footer{
+            text-align:right;
+            margin-right: 40px;
+            margin-top: 30px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 18px;
+
+            .topic-author{
+                margin-bottom: 10px;
+            }
+
+            .yes-Btn {
+                margin-left: 10px;
+            }
+        }
+    }
+
+    #topic-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #colors {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        margin-right: 10px;
+        margin-top:10px;
+        margin-bottom:15px;
+        font-family: 'Righteous';
+
+        #neg{
+           margin-right:8px;
+           background-color: #F36970;
+           padding:10px;
+           border-radius: 5px; 
+        }
+        #net{
+            margin-right:8px;
+            background-color: #F7CB26;
+            padding:10px;
+            border-radius: 5px; 
+        }
+        #pos{
+            background-color: #52B308;
+            padding:10px;
+            border-radius: 5px;
+        }
+    }
+    
+    #source-map-title {
+        font-family: 'Righteous';
+        font-size:20px;
+        text-align:center;
+        margin-right:40px;
+        margin-top:10px;
+        margin-bottom:0px;
+    }
+
+    #source-map-container {
+        display: flex;
+        flex-direction: column;
+        margin-right:40px;
+        margin-left:40px;
+        height:300px;
+        border-radius: 5px;
+        background-color: white;
+    }
+
+    #source-map-inner-box{
+        height:300px;
+        border-radius: 5px;
+        background-color: white;
+        display:flex;
+        flex-direction: row;
+        
+            #source-box{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top:125px;
+                transform: rotate(-30deg);
+                width: 250px;
+                height: 50px;
+                background: #D97B93;
+                border-radius: 8px;
+            }
+
+            #source-box:last-child {
+                margin-right: 100px;
+            }
+
+            #source-box:first-child {
+                margin-left: 100px;
+            }
+
+            #source-item{
+                padding: 5px;
+                color: white;
+                font-size: 10px;
+            }
+    }
+
+    #meter-key {
+        display: flex;
+        justify-content: space-between;
+        padding:15px
+    }
+
+    #article-list-container{
+        margin-right:10px;
+        margin-left:10px;
+        height:auto;
+        border-radius: 5px;
+        background-color: white; 
+    }
+
+    #sources{
+        padding-top:10px;
+        padding-bottom:10px;
+        font-family: 'Open Sans', sans-serif;
+        height:auto;
+        // overflow-y: scroll;
+        // overflow: auto;
+
+        ul{
+            list-style-type: none;
+            padding-right:20px;
+            padding-left:20px;
+            
+            li{
+                padding-bottom:7px;
+                padding-top: 7px;
+                border-bottom: 1px solid grey;
+            }
+        }
+    }
+
+    #link-item {
+        font-family:'Montserrat';
+        //font-weight: bold;
+        font-size: 15px;
+    }
+
+    #comment-container{
+        margin:5px;
+        height:auto;
+        border-radius: 3px;
+        background-color: #C2DDE6;
+
+        #comment-list-container{
+            margin-right:10px;
+            margin-left:10px;
+            max-height:700px;
+            border-radius: 5px;
+            background-color: white; 
+        }
+    
+        #comments{
+            padding-top:2px;
+            font-family: 'Open Sans', sans-serif;
+            max-height:690px;
+            overflow-y: scroll;
+            overflow: auto;
+            
+            #comment-item-parent {
+                background-color: #E9E9E9;
+                border-radius: 5px;
+                margin-bottom: 3px;
+                
+                p {
+                    margin-left: 7px;
+                    margin-right: 15px;
+                }
+
+                #comment-item {
+                    font-weight: bold;
+                }
+
+                #comment-author {
+                    text-align:right;
+                }
+            }
+    
+            ul{
+                list-style-type: none;
+                padding-right:10px;
+                padding-left:10px;
+                
+                li{
+                    padding-bottom:7px;
+                    padding-top: 7px;
+                    border-bottom: 1px solid grey;
+                }
+            }
+        }
+
+        #comment-footer{
+
+            .TextField{
+                margin-top: 15px;
+                margin-right: 20px;
+                margin-left:20px;
+                background-color: white;
+            }
+
+            .button{
+                text-align: right;
+                margin-right: 20px;
+                margin-top:10px;
+                padding-bottom: 10px;
+            }
+        }
+    }
+}
+
+#topics-parent {
+    
+    #inner-page {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    #projName {
+        margin-top:10px;
+        padding:0px;
+        font-family: 'Righteous';
+        font-size: 40px;
+        text-align: center;
+    }
+
+    #postsBG{
+        margin:5px;
+        border-radius: 10px;
+        background-color: #C2DDE6;
+    }
+    
+    #postsBGHead{
+        padding: 20px;
+        display:flex;
+        justify-content: flex-start;
+        align-items: center;
+        font-family: 'Righteous';
+        font-size: 20px;
+        margin-left: 5px;
+    
+        #recent-topics{
+            padding-right: 15px;
+        }
+
+        #see-all-btn {
+            border-radius: 2px;
+            background: none;
+            border: 2px solid #333;
+            border-radius: 4px;
+            align-items: center;
+            transition-duration: 0.3s;
+            margin-right: 20px;
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            display: inline;
+            padding: 2px 8px;
+            text-align: center;
+            vertical-align: middle;
+            color: black;
+        }
+
+        #see-all-btn:hover {
+            border: 2px solid #00D72F;
+            color: #00D72F;
+        }
+    }
+
+    #posts {
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        height:600px;
+        overflow: auto;
+        margin-left:0px;
+        align-content: flex-start;
+    }
+    
+    #congress-posts {
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        height:600px;
+        overflow: auto;
+    }
+
+    #congressPost {
+        display: flex;
+        font-size: 16px;
+        margin-top: 35px;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .congressPostItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 200px;
+        height: 200px;
+        overflow: auto;
+        overflow: auto;
+        background-color: #ffffff;
+        margin: 20px;
+        position: relative;
+        box-shadow: 6px 7px 8px -6px rgba(0,0,0,0.75);
+        color: black;    
+
+        #congressPostTitle {
+            display: flex;
+            font-size: 20px;
+            justify-content: center;
+            align-items: initial;
+            padding: 5px;
+        }
+    }
+
+    .postItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 160px;
+        height: 120px;
+        overflow: auto;
+        background-color: #ffffff;
+        margin: 10px;
+        position: relative;
+        box-shadow: 6px 7px 8px -6px rgba(0,0,0,0.75);
+        color: black;
+
+        #postTitle {
+            display: flex;
+            font-size: 15px;
+            justify-content: center;
+            align-items: center;
+            padding: 2px;
+        }
+    }
+
+    #news-feed-parent{
+        margin-right:10px;
+        margin-left:10px;
+        border-radius: 5px;
+        background-color: #C2DDE6;
+        margin-bottom: 30px;
+
+        #trending-news {
+            font-family: 'Righteous';
+            font-size: 24px;
+            padding: 15px;
+            padding-top: 15px;
+        }
+
+        #news{
+            margin-top: 20;
+            margin-bottom: 20px;
+            margin-right: 15px;
+            margin-left: 15px;
+            font-family: 'Open Sans', sans-serif;
+            height:420px;
+            overflow-x: auto;
+    
+            ul{
+                display:flex;
+                flex-direction: row;
+                list-style-type: none;
+                padding-right:20px;
+                padding-left:20px;
+                
+                li{
+                    margin-right: 30px;
+                    background-color: black;
+
+                    img{
+                        width: inherit;
+                        height: 250px;  
+                    }
+
+                    p {
+                        font-family: sans-serif;
+                        color: white;
+                        padding: 7px;
+                    }
+                   
+                }
+            }
+        }
+    }
+
+    
+
+}
+
 }
