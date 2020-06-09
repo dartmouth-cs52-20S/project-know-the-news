@@ -41,21 +41,39 @@ const renderAuth = (auth, signout, history) => {
 
 const Nav = (props) => {
   return (
-    <AppBar id="topNavBar">
-      <Toolbar id="topBar">
-        <div id="navLeft">
-          <IconButton color="inherit" aria-label="menu">
-            <NavLink className="logo" exact to="/" />
-          </IconButton>
-          <NavLink id="navLeftItem" exact to="/about">About</NavLink>
-          <NavLink id="navLeftItem" exact to="/topics">Topics</NavLink>
-          <NavLink id="navLeftItem" exact to="/bills">Congress</NavLink>
-        </div>
-        <div id="navRight">
-          {renderAuth(props.auth, props.signoutUser, props.history)}
-        </div>
-      </Toolbar>
-    </AppBar>
+    <div>
+      <AppBar id="topNavBar">
+        <Toolbar id="topBar">
+          <div id="navLeft">
+            <IconButton color="inherit" aria-label="menu">
+              <NavLink className="logo" exact to="/" />
+            </IconButton>
+            <NavLink id="navLeftItem" exact to="/about">About</NavLink>
+            <NavLink id="navLeftItem" exact to="/topics">Topics</NavLink>
+            <NavLink id="navLeftItem" exact to="/bills">Congress</NavLink>
+          </div>
+          <div id="navRight">
+            {renderAuth(props.auth, props.signoutUser, props.history)}
+          </div>
+        </Toolbar>
+      </AppBar>
+      <AppBar id="SmalltopNavBar">
+        <Toolbar id="topBar">
+          <div id="navLeft">
+            <IconButton color="inherit" aria-label="menu">
+              <NavLink className="logo" exact to="/" />
+            </IconButton>
+            <NavLink id="navLeftItem" exact to="/topics">Topics</NavLink>
+            <NavLink id="navLeftItem" exact to="/bills">Congress</NavLink>
+          </div>
+          <div id="navRight">
+            {renderAuth(props.auth, props.signoutUser, props.history)}
+            <NavLink className="nav" exact to="/about">About</NavLink>
+          </div>
+        </Toolbar>
+
+      </AppBar>
+    </div>
   );
 };
 

@@ -4,11 +4,28 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+// import Box from '@material-ui/core/Box';
 import { fetchCongressBills } from '../actions/index';
 
 class Bills extends Component {
+  constructor(props) {
+    super(props);
+    // eslint-disable-next-line react/no-unused-state
+    this.state = { show: false };
+  }
+
   componentDidMount() {
     this.props.fetchCongressBills();
+  }
+
+  showDiv = (billId) => {
+    console.log(billId);
+    this.setState((prevState) => ({
+      show: !prevState.show,
+    }));
+    console.log(document.getElementById(billId));
+    // document.getElementById(billId).display = 'block';
+    // console.log(document.getElementById(billId).textContent);
   }
 
   billsList = () => {
@@ -17,14 +34,23 @@ class Bills extends Component {
     return this.props.bills.map((billsOuter) => {
       return billsOuter.bills.map((bill, key) => {
         return (
-          <li key={bill.bill_id} className="congressPostItem">
-            <Typography id="congressPostTitle" variant="h4" component="h2">
-              {bill.short_title}
-            </Typography>
-            <Typography>
-              {`Sponsored by: ${bill.sponsor_party}`}
-            </Typography>
-          </li>
+          <div>
+            {/* {this.state.show && <Typography className="congressPostItem"> {bill.summary_short}</Typography>} */}
+            {/* <Box id={bill.bill_id} display="none"> {bill.summary_short}</Box> */}
+            {/* { showResults ? <Results /> : null } */}
+
+            <li key={bill.bill_id} className="congressPostItem" onClick={() => { this.showDiv(bill.bill_id); }}>
+              <Typography id="congressPostTitle" variant="h4" component="h2">
+                {bill.short_title}
+                {/* {bill.summary} */}
+              </Typography>
+              <Typography>
+                {`Sponsored by: ${bill.sponsor_party}`}
+              </Typography>
+            </li>
+            {this.state.show && <Typography className="congressPostSummary"> Bill Summary: { bill.summary ? bill.summary : 'not available' }</Typography>}
+
+          </div>
         );
       });
     });
