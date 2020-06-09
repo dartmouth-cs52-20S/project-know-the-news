@@ -26,13 +26,15 @@
   - [Front End](https://github.com/dartmouth-cs52-20S/project-know-the-news)
     - Change the root_url in actions/index to the local api server you will start. 
   - [API Server](https://github.com/dartmouth-cs52-20S/project-api-know-the-news)
+    - add a .env file with a random key of your choice as explained [here](http://cs52.me/assignments/lab/redux-platform+auth/#secret-key)
 
 * Second clone the chrome extension [repository](https://github.com/dartmouth-cs52-20S/project-other-know-the-news) navigate to chrome [extensions](chrome://extensions/) in your browser, toggle into developer mode in the upper right hand corner, then press loud unpacked in the upper left hand corner and choose the repository you just cloned. You are good to use it on any news site!
 
 ## Deployment
 
 * [Front End](http://knowthenews.surge.sh/)
-* [Chrome Extension](https://chrome.google.com/webstore/detail/denggifplbggoleagckomiilhcoeofka/publish-accepted?authuser=0&hl=en) 
+* [Chrome Extension](https://chrome.google.com/webstore/detail/denggifplbggoleagckomiilhcoeofka/publish-accepted?authuser=0&hl=en)
+* [API Backend](https://know-the-news.herokuapp.com/) 
 
 ## Screenshots 
 
