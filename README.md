@@ -33,7 +33,8 @@
 ## Deployment
 
 * [Front End](http://knowthenews.surge.sh/)
-* [Chrome Extension](https://chrome.google.com/webstore/detail/denggifplbggoleagckomiilhcoeofka/publish-accepted?authuser=0&hl=en) 
+* [Chrome Extension](https://chrome.google.com/webstore/detail/denggifplbggoleagckomiilhcoeofka/publish-accepted?authuser=0&hl=en)
+* [API Backend](https://know-the-news.herokuapp.com/) 
 
 ## Screenshots 
 
