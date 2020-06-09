@@ -38,6 +38,12 @@ class Topics extends Component {
           <div>
             Sign In to view your saved topics! Or Click on View All to view others saved topics.
           </div>
+          <br />
+          <div>
+            Also if you haven&apos;t done so yet go download our
+            <a href="https://chrome.google.com/webstore/detail/varify/denggifplbggoleagckomiilhcoeofka?authuser=0&hl=en" target="_blank">chrome extension</a>
+            and save some topics!
+          </div>
         </div>
       );
     } else if (!this.props.topics) {
@@ -105,8 +111,8 @@ class Topics extends Component {
           </div>
           <br />
           <div>
-            Download Our <a href="https://chrome.google.com/webstore/detail/varify/denggifplbggoleagckomiilhcoeofka?authuser=0&hl=en" target="_blank">chrome extension</a> and save some topics!
-            Or go check out other peoples topics by pressing &quot;View All&quot;
+            Download Our <a href="https://chrome.google.com/webstore/detail/varify/denggifplbggoleagckomiilhcoeofka?authuser=0&hl=en" target="_blank"> chrome extension </a> and save some topics!
+            Or go check out other people&apos;s topics by pressing &quot;View All&quot;
           </div>
         </div>
       );
